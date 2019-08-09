@@ -1,0 +1,95 @@
+/**index.wxss**/
+.itop{
+  width: 100%;
+  height: 330rpx;
+  position: relative;
+}
+.itop-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+.ibanner{
+  box-sizing: border-box;
+  width: 100%;
+  height: 330rpx;
+  /* padding:0 24rpx; */
+}
+/* .ibanner image{
+   border-top-left-radius:20rpx;
+   border-top-right-radius:20rpx;
+} */
+.iad{
+  width: 100%;
+  height: 260rpx;
+  background: #ccc
+}
+.itab{
+  width: 100%;
+  padding:24rpx 12rpx 0;
+
+}
+.itab-item{
+  width: 102rpx;
+  font-size: 24rpx;
+  color: #3E3E4D;
+  margin: 0 20rpx 18rpx
+}
+.itab-item image{
+  width: 102rpx;
+  height: 102rpx;
+}
+.iinfos{
+  width: 100%;
+  height: 64rpx;
+  align-items: center;
+  padding:12rpx 26rpx;
+  margin:12rpx 0 24rpx
+}
+.iinfos image{
+  width: 108rpx;
+  height: 28rpx;
+  margin: 0 16rpx 0 24rpx
+}
+.iinfosbox{
+  width: 434rpx;
+  font-size: 24rpx;
+  color: #3E3E4D;
+  height: 100%;
+  line-height: 40rpx
+}
+.iinfositem{
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+.iban{
+  width: 100%;
+  height: 226rpx
+}
+.ibans{
+  width: 100%;
+}
+.ibans-item{
+  width: 50%;
+  height: 200rpx;
+}
+.ilistbox{
+  width: 100%;
+  padding:24rpx 20rpx;
+}
+.listTit{
+  width: 100%;
+  align-items: center;
+  justify-content: center
+}
+.ltFire{
+  width: 28rpx;
+  height: 32rpx;
+  margin-right: 8rpx
+}
+.ltWoc{
+  width: 142rpx;
+  height: 34rpx
+}

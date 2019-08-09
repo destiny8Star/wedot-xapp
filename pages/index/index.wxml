@@ -1,0 +1,48 @@
+<!--index.wxml-->
+<!-- 顶部 -->
+<view class="itop">
+    <image class="itop-bg" src='../../img/i-top.png'></image>
+    <swiper autoplay="false" interval="3000" duration="500" circular='true' easing-function="easeInOutCubic" class='ibanner'>
+        <block wx:for="{{imgUrls}}" wx:key="ind">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" width="355" height="150"/>
+          </swiper-item>
+        </block>
+    </swiper>
+</view>
+<!-- banner下面 -->
+<view class='iad'></view>
+<!-- tab -->
+<view class='itab flex_ar'>
+    <block wx:for='[1,1,1,1]1' wx:key='item.id'>
+       <view class='itab-item'>
+          <image src='../../img/i-tab1.png'></image>
+          <view class='itab-p'>服装鞋靴</view>
+       </view>
+    </block> 
+</view>
+<!-- 通知 -->
+<view class="iinfos flex">
+   <image src="../../img/i-infos.png"></image>
+    <swiper autoplay="false" interval="3000" duration="500" circular='true' easing-function="easeInOutCubic" class='iinfosbox'vertical="true">
+        <block wx:for="{{infos}}" wx:key="ind">
+          <swiper-item class="iinfositem">
+             {{item}}
+          </swiper-item>
+        </block>
+    </swiper>
+</view>
+<!-- 中间广告 -->
+<view class="iban"><image src="../../img/i-ban.png"></image></view>
+<view class="ibans flex">
+   <block wx:for="{{imgUrls}}" wx:key="item.id">
+       <view class="ibans-item"><image src="{{item}}"></image></view>
+   </block>
+</view>
+<!-- 商品列表 -->
+<view class="ilistbox">
+    <view class="listTit flex">
+       <image class="ltFire" src="../../img/i-lf.png"></image>
+       <image class="ltWoc" src="../../img/i-lt.png"></image>
+    </view>
+</view>
