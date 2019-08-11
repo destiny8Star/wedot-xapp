@@ -12,14 +12,15 @@
   width: 100%;
   padding:20rpx;
 }
-.pubo-tit{
+.pubo-titt{
   width: 100%;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   font-size: 28rpx;
   color: #3E3E4D;
-  margin-bottom: 12rpx
+  margin-bottom: 12rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .pubo-min{
   width: 100%;

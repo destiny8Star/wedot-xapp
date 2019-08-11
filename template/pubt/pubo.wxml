@@ -1,8 +1,8 @@
-<template name="pubo">
+<template name="pubt">
   <view class="pubo">
      <image src="{{img}}" class="puboimg"></image>
      <view class="puboBot">
-        <view class="pubo-tit">{{name}}</view>
+        <view class="pubo-titt">{{name}}</view>
         <view class="pubo-min">¥{{price}} <image src="../../img/i-plus.png"></image></view>
         <view class="pubo-bot">返现{{res}}元</view>
      </view>
