@@ -1,1 +1,82 @@
 /* pages/mine/mine.wxss */
+page{
+  background: #F8F8F8
+}
+.mtop{
+  width: 100%;
+  height: 322rpx;
+  background: #efefef
+}
+.mtop-bg{
+  width: 100%;
+  height: 322rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.mtop-t{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding:100rpx 24rpx 0;
+}
+.mtop-head{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%
+}
+
+
+.mplus{
+  width: 100%;
+  height: 84rpx;
+}
+.morder{
+  width: 100%;
+  padding:24rpx 26rpx
+}
+.morderBox{
+  width: 100%;
+  border-radius: 8rpx;
+  background: #fff;
+  padding:32rpx 0
+}
+.morder-tit{
+  width: 100%;
+  font-size: 32rpx;
+  color: #3E3E4D;
+  font-weight: bold;
+  align-items: center;
+  margin-bottom: 30rpx
+}
+.mline{
+  width: 4rpx;
+  height: 20rpx;
+  background: #FC2C54;
+  margin:0 12rpx 0 26rpx
+}
+.morder-list{
+  width: 100%;
+  font-size: 24rpx;
+  color: #3E3E4D;
+  text-align: center
+}
+.morder-item image{
+  width: 80rpx;
+  height: 80rpx;
+  display: block;
+}
+.sorder-item image{
+  width: 66rpx;
+  height: 66rpx;
+  display: block;
+  margin: 0 auto
+
+}
+.mzero image{
+  width:698rpx;
+  height: 152rpx;
+  margin:0 auto;
+  display: block
+}

@@ -1,2 +1,45 @@
 <!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<!-- //顶部 -->
+<view class="mtop">
+  <image src="../../img/m-top.png" class="mtop-bg"></image>
+  <view class="mtop-t flex_be">
+      <image src="../../img/3.jpg" class="mtop-head"></image>
+  </view>
+</view>
+<view class="mplus"><image src="../../img/m-toplus.png"></image></view>
+<!-- //我的订单 -->
+<view class="morder">
+    <view class="morderBox">
+        <view class="morder-tit flex">
+            <view class="mline"></view>
+            我的订单
+        </view>
+        <view class="morder-list flex_ar">
+          <block wx:for='{{oList}}' wx:key='{{item.id}}'>
+            <view class="morder-item" bindtap="toOrder" data-id="{{item.id}}">
+              <image src="{{item.img}}"></image>
+              {{item.name}}
+            </view>
+          </block>
+        </view>
+    </view>
+</view>
+<!-- 零元商品 -->
+<view class="mzero"><image src="../../img/m-zero.png"></image></view>
+<!-- 我的服务 -->
+<view class="morder">
+    <view class="morderBox">
+        <view class="morder-tit flex">
+            <view class="mline"></view>
+            我的服务
+        </view>
+        <view class="morder-list flex_ar">
+          <block wx:for='{{sList}}' wx:key='{{item.id}}'>
+            <view class="sorder-item">
+              <image src="{{item.img}}"></image>
+              {{item.name}}
+            </view>
+          </block>
+        </view>
+    </view>
+</view>

@@ -93,9 +93,10 @@ Page({
       }
     })
   },
-  totest(){
+  //去详情页
+  toDetail(){
     wx.navigateTo({
-      url: 'test/test',
+      url: 'detail/detail',
     })
   },
   onLoad: function() {

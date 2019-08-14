@@ -1,5 +1,5 @@
 <template name="pubt">
-  <view class="pubo">
+  <view class="pubo" bindtap='toDetail'>
      <image src="{{img}}" class="puboimg"></image>
      <view class="puboBot">
         <view class="pubo-titt">{{name}}</view>

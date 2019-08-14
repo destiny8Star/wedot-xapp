@@ -1,0 +1,187 @@
+/* pages/cart/commitOr/commitOr.wxss */
+page{
+  background: #F8F8F8
+}
+.coTop{
+  width: 100%;
+  padding:24rpx 26rpx 150rpx
+}
+.coTop-add{
+  width: 100%;
+  padding:32rpx 20rpx;
+ align-items: center;
+ border-radius:16px;
+ background: #fff
+}
+.coTop-addL{
+  flex: 1;
+}
+.coTop-addR{
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 42rpx
+}
+.coTop-addL-top{
+  align-items: center
+}
+.coTop-addL-top image{
+  width: 36rpx;
+  height: 36rpx;
+}
+.coTop-addL-topM{
+  font-size: 32rpx;
+  color: #3E3E4D;
+  font-weight: bold;
+  margin:0 24rpx 0 4rpx
+}
+.coTop-addL-topP{
+   font-size: 28rpx;
+  color: #909090;
+}
+.coTop-addL-bot{
+  width: 530rpx;
+  margin-left: 40rpx;
+  font-size: 24rpx;
+  color: #3E3E4D;
+  font-weight: bold;
+  margin-top: 20rpx
+}
+
+.coBot{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0
+}
+.coBot-tip{
+  width: 100%;
+  height: 44rpx;
+  text-align: center;
+  line-height: 44rpx;
+  background: #F9F7DB;
+  font-size: 24rpx;
+  color: #D27D3C
+}
+.coBot-bots{
+  width: 100%;
+  padding:0 26rpx;
+  height: 98rpx;
+  align-items: center;
+  background: #fff
+}
+.coBot-botsL{
+  font-weight: bold;
+  align-items: baseline
+}
+.coBot-botsR{
+  width:228rpx;
+  height:68rpx;
+  background:rgba(252,44,84,1);
+  border-radius:34rpx;
+  font-size: 28rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 68rpx
+}
+.coBot-botsLtit{
+  font-size: 24rpx;
+  color: #3E3E4D;
+  
+}
+.coBot-botsLPri{
+  font-size: 32rpx;
+  align-items: baseline;
+  color: #FF1515
+}
+
+
+.orList{
+  width:100%;
+  background:rgba(255,255,255,1);
+  border-radius:16rpx;
+  padding:0rpx 26rpx 30rpx;
+  margin-top: 24rpx
+}
+.orList-top{
+  width: 100%;
+  align-items: center;
+  font-size: 24rpx;
+  color: #3E3E4D;
+  margin-bottom: 24rpx;
+  height: 90rpx;
+  border-bottom: 2rpx solid #F4F4F4
+}
+.orList-top image{
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 6rpx
+}
+.orList-con{
+  align-items: center;
+  width: 100%;
+  padding-bottom: 24rpx;
+}
+.or-line{
+  width: 100%;
+  height: 2rpx;
+  background: #F4F4F4
+}
+
+.orList-img{
+  width: 162rpx;
+  height: 162rpx;
+  margin-right: 24rpx
+}
+.orList-conR{
+  flex: 1;
+}
+.orList-conR-tit{
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 28rpx;
+  color: #3E3E4D;
+  font-weight: bold
+}
+.orList-conR-sku{
+  font-size: 24rpx;
+  color: #909090;
+  margin: 8rpx 0 12rpx
+}
+.orList-conR-num{
+  align-items: center
+}
+.orList-conR-numP{
+  color: #909090;
+  font-size: 28rpx;
+  align-items: baseline
+}
+.orList-conR-numPS{
+  font-size: 24rpx
+}
+.orList-conR-numN{
+  color: #3E3E4D;
+  font-size: 24rpx
+}
+.orList-bot{
+  width: 100%;
+  align-items: center;
+  font-size: 24rpx;
+  color: #3E3E4D;
+  margin-top: 22rpx
+}
+
+.orList-botcon{
+  font-weight: bold;
+  align-items: baseline
+}
+.orList-botcon2{
+  font-weight: bold;
+  color: #FF1515;
+  align-items: baseline
+}
+.orList-botconPri{
+  font-size: 32rpx
+}

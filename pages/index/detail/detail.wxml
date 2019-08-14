@@ -1,0 +1,70 @@
+<!--pages/index/detail/detail.wxml-->
+<!-- //详情顶部banner -->
+<view class="dtop">
+   <swiper autoplay="false" interval="3000" duration="500" circular='true'  class='dbanner' indicator-dots='true' indicator-color='rgba(255, 255, 255)' indicator-active-color='#F4CD3C'>
+        <block wx:for="{{imgUrls}}" wx:key="ind">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" width="355" height="150"/>
+          </swiper-item>
+        </block>
+    </swiper>
+</view>
+<!-- //详情信息价格 -->
+<view class="dinfo">
+   <view class="dinfo-top flex">
+      <view class="dinfo-pri flex"><view class="dinfo-prib">￥</view>77.00</view>
+      <image src="../../../img/i-plus.png"></image>
+   </view>
+   <view class="dinfo-lsj flex_be">
+      <view class="dinfo-lsjNum">零售价￥88</view>
+      <view class="dinfo-lsjKD">快递费:0.00</view>
+   </view>
+   <view class="dinfo-tit">2019夏装新款韩asasddf版修身镂空条纹短条纹短袖主标主标题袖主标题主asfd标题2019夏装新</view>
+   <view class="dinfo-tit2">2019夏装新款韩asasddf版修身镂空条纹短条纹短袖主标主标19夏装新款韩asasddf版修身镂空条纹短条纹短袖主标主标19夏装新款韩asasddf版修身镂空条纹短条纹短袖主标主标题袖主标题主asfd标题2019夏装</view>
+</view>
+<!-- //详情中间部分 -->
+<view class="dmine">
+    <view class="dmine-top flex">
+       <view class="dmine-name">优惠</view>
+       <view class="dmine-lab">返现</view>
+       <view class="dmine-fx flex">单件返现<view class="dmine-nu">10</view>元</view>
+    </view>
+     <view class="dmine-top dmine-top2 flex">
+       <view class="dmine-name">优惠</view>
+       <view class="dmine-fx dmine-fx2">部分地方包邮（除新疆、内蒙古、西藏、青海、四川、宁夏
+等地区除外）</view>
+    </view>
+</view>
+<!-- //规格 -->
+<view class="dmine">
+    <view class="dmine-top flex">
+       <view class="dmine-name">已选</view>
+       <view class="dmine-fx dmine-fx2">请选择颜色，尺码，尺码</view>
+       <view class="dmine-right flex_ar">
+          <view class="dmint-cir"></view>
+          <view class="dmint-cir dmint-cirm"></view>
+          <view class="dmint-cir"></view>
+        </view>
+    </view>
+</view>
+<!-- 详情图片 -->
+<view class="ddimg">
+   <image src="../../../img/3.jpg" mode='widthFix'></image>
+</view>
+<!-- 底部按钮 -->
+<view class="dbot flex_be">
+   <view class="dbot-l">
+      <image src="../../../img/d-car.png"></image>
+      购物车
+   </view>
+   <view class="dbot-r flex">
+      <view class="dbot-rL flex">加入购物车</view>
+      <view class="dbot-rM flex">立即购买</view>
+      <view class="dbot-rR flex">
+         <view class="dbot-tR-t">推广</view>
+         <view class="dbot-tR-b">可赚99元</view>
+      </view>
+   </view>
+</view>
+
+

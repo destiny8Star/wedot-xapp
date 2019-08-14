@@ -1,0 +1,165 @@
+/* pages/mine/order/order.wxss */
+page{
+  background: #D8D8D8
+}
+.ortop{
+  width: 100%;
+  height: 88rpx;
+  font-size: 30rpx;
+  color: #3E3E4D;
+  line-height: 88rpx
+}
+.oritems{
+  position: relative
+}
+.soritem{
+  color: #FC2C54;
+  font-weight: bold
+}
+.oritemL{
+  width: 38rpx;
+  height: 4rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto
+}
+.orBox{
+  width: 100%;
+   padding:24rpx 26rpx
+}
+.orList{
+  width:100%;
+  background:rgba(255,255,255,1);
+  border-radius:16rpx;
+  padding:30rpx 26rpx
+}
+.orList-top{
+  width: 100%;
+  align-items: center;
+  font-size: 24rpx;
+  color: #3E3E4D;
+  margin-bottom: 24rpx
+}
+.orList-top image{
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 6rpx
+}
+.orList-con{
+  align-items: center;
+  width: 100%;
+}
+.orList-img{
+  width: 162rpx;
+  height: 162rpx;
+  margin-right: 24rpx
+}
+.orList-conR{
+  flex: 1;
+}
+.orList-conR-tit{
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 28rpx;
+  color: #3E3E4D;
+  font-weight: bold
+}
+.orList-conR-sku{
+  font-size: 24rpx;
+  color: #909090;
+  margin: 8rpx 0 12rpx
+}
+.orList-conR-num{
+  align-items: center
+}
+.orList-conR-numP{
+  color: #909090;
+  font-size: 28rpx;
+  align-items: baseline
+}
+.orList-conR-numPS{
+  font-size: 24rpx
+}
+.orList-conR-numN{
+  color: #3E3E4D;
+  font-size: 24rpx
+}
+.orList-bot{
+  width: 100%;
+  align-items: center;
+  font-size: 24rpx;
+  color: #3E3E4D;
+  margin-top: 22rpx
+}
+
+.orList-botcon{
+  font-weight: bold
+}
+.orList-botcon2{
+  font-weight: bold;
+  color: #FF1515;
+  align-items: baseline
+}
+.orList-botconPri{
+  font-size: 32rpx
+}
+.orList-btn{
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 24rpx;
+  margin-top: 30rpx
+}
+.orList-btnS{
+  width: 128rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  background: #FC2C54;
+  color: #fff;
+  text-align: center;
+  line-height: 56rpx;
+  margin-left: 24rpx
+}
+.orList-btnQ{
+   width: 128rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  color: #909090;
+  text-align: center;
+  line-height: 52rpx;
+  border: 2rpx solid #909090
+}
+.orList-botconwl{
+  align-items: center;
+  font-size: 24rpx;
+  color: #000;
+  font-weight: bold
+}
+.orList-botconfz{
+  width:64rpx;
+  height:42rpx;
+  background:rgba(244,244,244,1);
+  border-radius:16rpx;
+  text-align: center;
+  line-height: 42rpx;
+  margin-left: 12rpx;
+  color: #3E3E4D
+}
+.orList-botconSbtn{
+  width:176rpx;
+  height:56rpx;
+  background:rgba(252,44,84,1);
+  border-radius:28rpx;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 56rpx
+}
+.orList-botconDon{
+  font-weight: bold 
+}

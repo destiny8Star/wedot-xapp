@@ -1,0 +1,60 @@
+<!--pages/mine/order/order.wxml-->
+<!-- //顶部 -->
+<view class="ortop flex_ar">
+   <block wx:for='{{tabs}}' wx:key='{{item.id}}'> 
+     <view class="oritems {{curid==item.id?'soritem':''}}" bindtap="seltabHand" data-id="{{item.id}}" >
+        {{item.name}}
+        <image src="../../../img/o-tabLine.png" class="oritemL" hidden="{{item.id!=curid}}"></image>
+     </view>
+   </block>
+</view>
+<!-- /订单列表 -->
+<view class="orBox">
+   <view class="orList">
+   <!-- 顶部信息 -->
+      <view class="orList-top flex">
+         <image src="../../../img/c-st.png"></image>
+         江西苹果店
+      </view>
+      <!-- //中间信息 -->
+      <view class="orList-con flex">
+         <image src="../../../img/3.jpg" class="orList-img"></image>
+         <view class="orList-conR">
+            <view class="orList-conR-tit">江西2苹果8斤江西2苹果8斤江西2苹果8斤江西2苹果8斤江西2苹果8斤杀掉对方</view>
+            <view class="orList-conR-sku">灰色；XL；加绒加厚</view>
+            <view class="orList-conR-num flex_be">
+               <view class="orList-conR-numP flex"><view class="orList-conR-numPS">￥</view>178</view>
+               <view class="orList-conR-numN">X78</view>
+            </view>
+         </view>
+      </view>
+      <!-- 地下信息 -->
+      <view class="orList-bot flex_be">
+         <view class="orList-botTit">时间</view>
+         <view class="orList-botcon">2019-05-05  11:04</view>
+      </view>
+       <view class="orList-bot flex_be">
+         <view class="orList-botTit">总价</view>
+         <view class="orList-botcon2 flex">￥<view class="orList-botconPri">155</view></view>
+      </view>
+      <!-- //待支付的 -->
+      <view class="orList-btn flex" hidden='{{curid!=1}}'>
+         <view class="orList-btnQ">取消订单</view>
+         <view class="orList-btnS">付款</view>
+      </view>
+      <!-- 待收货的 -->
+       <view class="orList-bot flex_be" hidden="{{curid!=3}}">
+         <view class="orList-botTit">物流订单</view>
+         <view class="orList-botconwl flex">2018837490238<view class="orList-botconfz">复制</view></view>
+      </view>
+      <view class="orList-bot flex_be" hidden="{{curid!=3}}">
+         <view class="orList-botTit">订单状态</view>
+         <view class="orList-botconSbtn" bindtap="haveGet">确认收货</view>
+      </view>
+      <!-- //已经收货的 -->
+       <view class="orList-bot flex_be" hidden="{{curid!=4}}">
+         <view class="orList-botTit">订单状态</view>
+         <view class="orList-botconDon">已收货</view>
+      </view>
+   </view>
+</view>
