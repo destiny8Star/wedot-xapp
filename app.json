@@ -6,7 +6,11 @@
     "pages/mine/mine",
     "pages/index/detail/detail",
     "pages/mine/order/order",
-    "pages/cart/commitOr/commitOr"
+    "pages/cart/commitOr/commitOr",
+    "pages/mine/orderDet/orderDet",
+    "pages/mine/address/address",
+    "pages/mine/increase/increase",
+    "pages/mine/selAdd/selAdd"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,45 @@
+/* pages/mine/selAdd/selAdd.wxss */
+.seTop{
+  width: 100%;
+  border-bottom: 2rpx solid  #EDEDED;
+  height: 104rpx;
+  padding:0 26rpx;
+  font-size: 32rpx;
+  color: #3E3E4D
+}
+.seTop-item{
+  height: 100%;
+  max-width: 200rpx;
+  margin-right: 40rpx;
+  line-height: 102rpx
+}
+.selBar{
+  border-bottom: 2rpx solid #FC2C54
+}
+.seBot{
+  width: 100%;
+  padding-top: 20rpx;
+  padding-left: 46rpx;
+  font-size: 28rpx;
+  color: #3E3E4D;
+  height: 80vh
+}
+.seBot-item{
+  margin-bottom: 32rpx;
+  align-items: center
+}
+.seBotbox{
+  height: 100%;
+}
+.selItem{
+  color: #FC2C54
+}
+.seBtn{
+  width: 100%;
+  height: 92rpx;
+  background: #FC2C54;
+  text-align: center;
+  line-height: 92rpx;
+  font-size: 34rpx;
+  color: #fff
+}

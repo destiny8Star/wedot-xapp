@@ -2,10 +2,32 @@
 <!-- //顶部 -->
 <view class="mtop">
   <image src="../../img/m-top.png" class="mtop-bg"></image>
-  <view class="mtop-t flex_be">
+  <view class="mtop-t flex">
       <image src="../../img/3.jpg" class="mtop-head"></image>
+      <view class="mtop-tR">
+         <view class="mtop-tR-top flex">
+             点击生活
+             <view class="mtop-tR-topbox">
+                 <image src="../../img/m-thy.png" class="m-hy"></image>
+                 买手会员
+             </view>
+         </view>
+         <view class="mtop-tR-bot flex">
+           <image src="../../img/m-box.png" class="mtop-tRbg"></image>
+            <view class="mtop-tR-botWoc">邀请码：158445254784</view>
+            <view class="mtop-tR-botFz">复制</view>
+         </view>
+      </view>
+  </view>
+  <view class="mtop-b flex_ar">
+     <view class="mtop-bItem" wx:for='{{mineCont}}' wx:key="ind">
+          <view style="font-size:32rpx">0</view>
+          <view>{{item.name}}</view>
+     </view>
+   
   </view>
 </view>
+<!-- 中间图片 -->
 <view class="mplus"><image src="../../img/m-toplus.png"></image></view>
 <!-- //我的订单 -->
 <view class="morder">

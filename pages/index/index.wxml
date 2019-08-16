@@ -1,6 +1,17 @@
 <!--index.wxml-->
 <import src="../../template/pubo/pubo.wxml"/>
 <import src="../../template/pubt/pubo.wxml"/>
+<!-- 悬浮顶部 -->
+<view class="ifloat flex">
+   <view class="ifloatL flex">
+     <view class="ifloatL-woc">杭州</view>
+     <image src="../../img/i-dow.png"></image>
+   </view>
+   <view class="ifloatInp flex">
+      <image src="../../img/i-ss.png"></image>
+      搜索商品
+   </view>
+</view>
 
 <!-- 顶部 -->
 <view class="itop">

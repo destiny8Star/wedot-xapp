@@ -4,12 +4,21 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.6",
@@ -39,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -73,6 +82,34 @@
 					"id": 4,
 					"name": "提交订单",
 					"pathName": "pages/cart/commitOr/commitOr",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "订单详情",
+					"pathName": "pages/mine/orderDet/orderDet",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的收获地址",
+					"pathName": "pages/mine/address/address",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加收货地址",
+					"pathName": "pages/mine/increase/increase",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择地址",
+					"pathName": "pages/mine/selAdd/selAdd",
 					"query": "",
 					"scene": null
 				}

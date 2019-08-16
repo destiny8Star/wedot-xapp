@@ -5,7 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    oList:[
+    mineCont:[  //我的上面部分
+     {
+       id:"1",
+       name:"累计收益"
+     },
+      {
+        id: "2",
+        name: "我的粉丝"
+      },
+      {
+        id: "3",
+        name: "我的商家"
+      },
+    ],
+    oList:[  //我的订单
       {
         id:1,
         name:"待支付",
@@ -27,28 +41,29 @@ Page({
         img: "../../img/m-o4.png"
       }
     ],
-    sList: [
-      {
-        id: 1,
-        name: "余额明细",
-        img: "../../img/m-s1.png"
-      },
+    sList: [//我的服务
+      // {
+      //   id: 1,
+      //   name: "余额明细",
+      //   img: "../../img/m-s1.png"
+      // },
       {
         id: 2,
         name: "地址管理",
         img: "../../img/m-s2.png"
       },
-      {
-        id: 3,
-        name: "联系客服",
-        img: "../../img/m-s3.png"
-      },
+      // {
+      //   id: 3,
+      //   name: "联系客服",
+      //   img: "../../img/m-s3.png"
+      // },
       {
         id: 4,
         name: "关于我们",
         img: "../../img/m-s4.png"
       }
-    ]
+    ],
+
   },
 //去订单页面
   toOrder(e){

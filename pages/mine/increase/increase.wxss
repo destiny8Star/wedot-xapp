@@ -1,0 +1,48 @@
+/* pages/mine/increase/increase.wxss */
+.inTop{
+  width: 100%;
+  margin-top: 20rpx;
+  font-size: 28rpx
+}
+.inItem{
+  width: 100%;
+  align-items: center;
+  border-bottom: 1rpx solid #CBCDD6;
+  height: 105rpx;
+  padding:0 62rpx;
+
+}
+.inItem-tit{
+  color: #3E3E4D;
+  font-weight: bold;
+  margin-right: 70rpx
+}
+.inItem-name{
+  color: #3E3E4D;
+}
+.inItem-btn{
+  color: #909090;
+  align-items: center
+}
+.inItem-btn image{
+  width: 18rpx;
+  height: 18rpx;
+  margin-left: 18rpx
+}
+.inItem-ss{
+  max-width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+.inBtn{
+  width: 628rpx;
+  height: 88rpx;
+  background: #FC2C54;
+  margin: 440rpx auto;
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 34rpx;
+  color: #fff
+}

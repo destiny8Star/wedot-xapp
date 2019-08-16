@@ -43,7 +43,7 @@
          <view class="orList-btnS">付款</view>
       </view>
       <!-- 待收货的 -->
-       <view class="orList-bot flex_be" hidden="{{curid!=3}}">
+       <view class="orList-bot flex_be" hidden="{{curid!=3&&curid!=4}}">
          <view class="orList-botTit">物流订单</view>
          <view class="orList-botconwl flex">2018837490238<view class="orList-botconfz">复制</view></view>
       </view>

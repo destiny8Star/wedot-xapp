@@ -1,0 +1,57 @@
+<!--pages/mine/address/address.wxml-->
+<!-- 地址box -->
+<view class="ad-box">
+   <view class="ad-item">
+      <view class="ad-itemTop flex">
+         <view class="ad-itemTop-name">卡拉卡</view>
+         <view class="ad-itemTop-phone">15874587458</view>
+      </view>
+      <view class="ad-itemMin">浙江省杭州市萧山区民和路58号保亿中心A座1702室</view>
+      <view class="ad-itemBot flex_be">
+          <view class="ad-itemBot-l flex">
+               <!-- <icon type="success" size="18" color='#FC2C54'></icon> -->
+               <view class="ad-itemBot-licon"></view>
+               <view class="ad-itemBot-ldf">设为默认</view>
+          </view>
+          <view class="ad-itemBot-r flex">
+              <view class="ad-itemBot-rbj flex">
+                 <image src="../../../img/ad-bj.png"></image>
+                 编辑
+              </view>
+               <view class="ad-itemBot-rbj ad-itemBot-rdel flex">
+                 <image src="../../../img/ad-del.png"></image>
+                 删除
+              </view>
+          </view>
+      </view>
+   </view>
+
+
+<view class="ad-item">
+      <view class="ad-itemTop flex">
+         <view class="ad-itemTop-name">卡拉卡</view>
+         <view class="ad-itemTop-phone">15874587458</view>
+      </view>
+      <view class="ad-itemMin">浙江省杭州市萧山区民和路58号保亿中心A座1702室</view>
+      <view class="ad-itemBot flex_be">
+          <view class="ad-itemBot-l flex">
+               <icon type="success" size="18" color='#FC2C54'></icon>
+               <view class="ad-itemBot-ldf ad-itemBot-lmr">已设为默认</view>
+          </view>
+          <view class="ad-itemBot-r flex">
+              <view class="ad-itemBot-rbj flex">
+                 <image src="../../../img/ad-bj.png"></image>
+                 编辑
+              </view>
+               <view class="ad-itemBot-rbj ad-itemBot-rdel flex">
+                 <image src="../../../img/ad-del.png"></image>
+                 删除
+              </view>
+          </view>
+      </view>
+   </view>
+</view>
+<!-- 添加地址按钮 -->
+<view class="adBot-btn flex" bindtap="toAdd">
+   添加收货地址
+</view>

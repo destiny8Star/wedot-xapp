@@ -1,6 +1,6 @@
 /* pages/mine/order/order.wxss */
 page{
-  background: #D8D8D8
+  background: #F8F8F8
 }
 .ortop{
   width: 100%;

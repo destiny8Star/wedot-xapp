@@ -2,6 +2,21 @@
 page{
   background: #F4F4F4
 }
+.reArr{
+  width: 50rpx;
+  height: 50rpx;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  position: fixed;
+  top: 60rpx;
+  left: 26rpx;
+  z-index: 999;
+  padding:5rpx
+}
+.reArr image{
+  width: 40rpx;
+  height: 40rpx
+}
 .dtop{
   width: 100%;
   height: 566rpx;

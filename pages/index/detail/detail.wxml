@@ -1,5 +1,6 @@
 <!--pages/index/detail/detail.wxml-->
 <!-- //详情顶部banner -->
+<view class="reArr" bindtap="reLeft"><image src="../../../img/all-left.png"></image></view>
 <view class="dtop">
    <swiper autoplay="false" interval="3000" duration="500" circular='true'  class='dbanner' indicator-dots='true' indicator-color='rgba(255, 255, 255)' indicator-active-color='#F4CD3C'>
         <block wx:for="{{imgUrls}}" wx:key="ind">
@@ -53,7 +54,7 @@
 </view>
 <!-- 底部按钮 -->
 <view class="dbot flex_be">
-   <view class="dbot-l">
+   <view class="dbot-l" bindtap="toCart">
       <image src="../../../img/d-car.png"></image>
       购物车
    </view>

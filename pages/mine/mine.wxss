@@ -5,14 +5,12 @@ page{
 .mtop{
   width: 100%;
   height: 322rpx;
-  background: #efefef
+  background: #efefef;
+  position: relative
 }
 .mtop-bg{
   width: 100%;
   height: 322rpx;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 .mtop-t{
   width: 100%;
@@ -20,12 +18,84 @@ page{
   top: 0;
   left: 0;
   padding:100rpx 24rpx 0;
+  align-items: center
 }
 .mtop-head{
   width: 100rpx;
   height: 100rpx;
-  border-radius: 50%
+  border-radius: 50%;
+  margin-right: 20rpx
 }
+.mtop-tR{
+  width: 500rpx;
+
+}
+.mtop-tR-top{
+  padding-left: 16rpx;
+  align-items: center;
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: bold
+}
+.mtop-tR-topbox{
+  position: relative;
+  padding: 0 16rpx;
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 24rpx;
+  text-align: end;
+  line-height: 34rpx;
+  height: 34rpx;
+  border-radius: 16rpx;
+  margin-left: 45rpx
+}
+.mtop-tR-bot{
+   height: 38rpx;
+   align-items: center;
+   font-size: 24rpx;
+   color: #fff;
+   position: relative;
+   margin-top: 20rpx
+}
+.mtop-tRbg{
+  width: 300rpx;
+  height: 38rpx;
+  position: absolute;
+  top: 0;
+  left: 0
+}
+.mtop-tR-botWoc{
+  height: 38rpx;
+  line-height: 38rpx
+}
+.mtop-tR-botFz{
+  width:68rpx;
+  height:38rpx;
+  border-radius:8rpx;
+  border:2rpx solid rgba(255,255,255,1); 
+  text-align: center;
+  margin-left: 20rpx
+}
+.m-hy{
+  width: 46rpx;
+  height: 46rpx;
+  position: absolute;
+  top: -7rpx;
+  left: -35rpx
+}
+
+.mtop-b{
+  width: 100%;
+  align-items: center;
+  position: absolute;
+  bottom: 24rpx;
+  left: 0;
+  font-size: 24rpx;
+}
+.mtop-bItem{
+  text-align: center;
+  color: #fff
+}
+
 
 
 .mplus{

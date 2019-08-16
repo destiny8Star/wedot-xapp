@@ -1,0 +1,25 @@
+<!--pages/mine/selAdd/selAdd.wxml-->
+<!-- 顶部bar -->
+<view class="seTop flex">
+     <view class="seTop-item {{curTar==1?'selBar':''}}" bindtap="selTar" data-id="1">{{proT}}</view>
+     <view class="seTop-item {{curTar==2?'selBar':''}}" bindtap="selTar" data-id="2" hidden='{{proT=="请选择"}}'>{{cityT}}</view>
+     <view class="seTop-item {{curTar==3?'selBar':''}}" bindtap="selTar" data-id="3"  hidden='{{cityT=="请选择"}}'>{{discountT}}</view>
+</view>
+<!-- 底部 -->
+<view class="seBot">
+    <scroll-view class="seBotbox" scroll-y='true'>
+       <block hidden='{{curTar!=1}}'>
+          <view wx:for='{{province}}' wx:key='{{index}}' class="seBot-item flex" bindtap="selP">{{item}}</view>
+       </block>  
+        <block  hidden='{{curTar!=2}}'>
+          <view wx:for='{{city}}' wx:key='{{index}}' class="seBot-item flex" bindtap="selC">{{item}}</view>
+       </block> 
+        <block  hidden='{{curTar!=3}}'>
+          <view wx:for='{{discount}}' wx:key='{{index}}' class="seBot-item flex" >{{item}}</view>
+       </block> 
+       <!-- <view class="seBot-item selItem flex">上海 <icon type="success_no_circle" size="14" color="#FC2C54" style='margin-left:50rpx'></icon></view> -->
+    </scroll-view>
+</view>
+<view class="seBtn" hidden='{{curTar!=1}}'>1</view>
+<view class="seBtn" hidden='{{curTar!=2}}'>2</view>
+<view class="seBtn" hidden='{{curTar!=3}}'>3</view>
