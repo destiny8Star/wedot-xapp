@@ -1,9 +1,14 @@
 //app.js
 
 import Auth from '/class/api/AuthApi.js';
+import Mine from '/class/api/Mine.js';
+
+
 const auth = new Auth();
+const mine =new Mine()
 App({
   auth: auth,
+  mine:mine,
   onLaunch: function () {
 
   },

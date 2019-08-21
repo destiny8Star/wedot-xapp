@@ -1,6 +1,6 @@
 import BaseApi from './BaseApi.js';
 const wxApi = require('./../utils/WxApi.js');
-// const wxApi = require('./../utils/WxApi.js');
+
 export default class AuthApi extends BaseApi {
   constructor() {
     super();
@@ -53,33 +53,33 @@ export default class AuthApi extends BaseApi {
   }
   
   //实名认证上传图片
-  sendImg(type,arr) {
-    let auth = wx.getStorageSync('auth');
-   let token = auth.token;
-    let openid = auth.openid.openid
-    return new Promise((resole,rej)=>{
-      wx.uploadFile({
-        url:  'https://farm.isoft.mobi/api/papersUpload',
-        filePath: arr[0],
-        name: 'files',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        method: "POST",
-        formData: {
-          file_type:type,
-          token: token,
-          openid:openid
-        },
-        success:function(res){
-            resole(res)
-        },
-        fail:function(res){
-               rej(res)
-        }
-      })
-    })
-  }
+  // sendImg(type,arr) {
+  //   let auth = wx.getStorageSync('auth');
+  //  let token = auth.token;
+  //   let openid = auth.openid.openid
+  //   return new Promise((resole,rej)=>{
+  //     wx.uploadFile({
+  //       url:  'https://farm.isoft.mobi/api/papersUpload',
+  //       filePath: arr[0],
+  //       name: 'files',
+  //       header: {
+  //         "Content-Type": "application/x-www-form-urlencoded"
+  //       },
+  //       method: "POST",
+  //       formData: {
+  //         file_type:type,
+  //         token: token,
+  //         openid:openid
+  //       },
+  //       success:function(res){
+  //           resole(res)
+  //       },
+  //       fail:function(res){
+  //              rej(res)
+  //       }
+  //     })
+  //   })
+  // }
 
 
 }

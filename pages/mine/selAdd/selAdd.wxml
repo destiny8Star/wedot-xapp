@@ -8,18 +8,23 @@
 <!-- 底部 -->
 <view class="seBot">
     <scroll-view class="seBotbox" scroll-y='true'>
-       <block hidden='{{curTar!=1}}'>
-          <view wx:for='{{province}}' wx:key='{{index}}' class="seBot-item flex" bindtap="selP">{{item}}</view>
-       </block>  
-        <block  hidden='{{curTar!=2}}'>
-          <view wx:for='{{city}}' wx:key='{{index}}' class="seBot-item flex" bindtap="selC">{{item}}</view>
-       </block> 
-        <block  hidden='{{curTar!=3}}'>
-          <view wx:for='{{discount}}' wx:key='{{index}}' class="seBot-item flex" >{{item}}</view>
-       </block> 
+    <!-- //省 -->
+          <view hidden='{{curTar!=1}}' wx:for='{{province}}' wx:key='{{index}}' class="seBot-item flex {{spid==item.cityId?'selItem':''}}" bindtap="selP" data-pid="{{item.cityId}}" data-pname="{{item.cityName}}">
+          {{item.cityName}}
+          <icon type="success_no_circle" hidden="{{spid!=item.cityId}}" size="14" color="#FC2C54" style='margin-left:50rpx'></icon>
+          </view>
+    <!-- 市 -->
+          <view hidden='{{curTar!=2}}' wx:for='{{city}}' wx:key='{{index}}' class="seBot-item flex {{scid==item.cityId?'selItem':''}}"  bindtap="selC" data-pid="{{item.cityId}}" data-pname="{{item.cityName}}">
+          {{item.cityName}}
+          <icon type="success_no_circle" hidden="{{scid!=item.cityId}}" size="14" color="#FC2C54" style='margin-left:50rpx'></icon>
+          </view>
+    <!-- 区 -->
+          <view hidden='{{curTar!=3}}' wx:for='{{discount}}' wx:key='{{index}}' class="seBot-item flex {{sdid==item.cityId?'selItem':''}}" bindtap="selD" data-pid="{{item.cityId}}" data-pname="{{item.cityName}}">
+          {{item.cityName}}
+          <icon type="success_no_circle" hidden="{{sdid!=item.cityId}}" size="14" color="#FC2C54" style='margin-left:50rpx'></icon>
+          </view>
        <!-- <view class="seBot-item selItem flex">上海 <icon type="success_no_circle" size="14" color="#FC2C54" style='margin-left:50rpx'></icon></view> -->
     </scroll-view>
 </view>
-<view class="seBtn" hidden='{{curTar!=1}}'>1</view>
-<view class="seBtn" hidden='{{curTar!=2}}'>2</view>
-<view class="seBtn" hidden='{{curTar!=3}}'>3</view>
+
+<view class="seBtn" hidden='{{discountT=="请选择"}}'>确定</view>

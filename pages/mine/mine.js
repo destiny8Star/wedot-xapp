@@ -73,6 +73,20 @@ Page({
          url: 'order/order?curid='+id,
        })
   },
+  //去服务页面
+  toSer(e){
+     let id=e.currentTarget.dataset.id
+     if(id==2) wx.navigateTo({
+       url: 'address/address',
+     })
+     if(id==4) console.log("id====4")
+  },
+  //去零元商品
+  toPub(){
+    wx.navigateTo({
+      url: 'zero/zero',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -50,3 +50,9 @@ flex-wrap: wrap;
 flex-direction: row;
 justify-content: flex-end
 }
+.overT{
+   display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

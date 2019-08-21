@@ -10,7 +10,8 @@
     "pages/mine/orderDet/orderDet",
     "pages/mine/address/address",
     "pages/mine/increase/increase",
-    "pages/mine/selAdd/selAdd"
+    "pages/mine/selAdd/selAdd",
+    "pages/mine/zero/zero"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,6 +1,6 @@
 /* pages/index/detail/detail.wxss */
 page{
-  background: #F4F4F4
+  background: #F4F4F4;
 }
 .reArr{
   width: 50rpx;
@@ -10,7 +10,7 @@ page{
   position: fixed;
   top: 60rpx;
   left: 26rpx;
-  z-index: 999;
+  z-index: 998;
   padding:5rpx
 }
 .reArr image{
@@ -32,7 +32,8 @@ page{
   margin-bottom: 12rpx;
 }
 .dinfo-top{
-  align-items: baseline
+  align-items: baseline;
+  width: 100%
 }
 .dinfo-pri{
   color: #FC2C54;
@@ -191,4 +192,126 @@ page{
   font-size: 22rpx;
   text-align: center;
   width: 100%
+}
+.dsku{
+  width: 100%;
+  position: fixed;
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  padding:36rpx 26rpx 12rpx;
+  z-index:999 
+}
+.dskyTop{
+  width: 100%;
+  align-items: center;
+  margin-bottom: 40rpx
+}
+.dskyTop-L{
+  width: 224rpx;
+  height: 224rpx;
+  margin-right: 24rpx
+}
+.dskyTop-R{
+  flex: 1;
+}
+.dskyTop-Rtit{
+  width: 100%;
+   display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: 34rpx;
+  color: #3E3E4D;
+  font-weight: bold
+}
+.dskyTop-Rfx{
+  padding:0 8rpx;
+  font-size: 18rpx;
+  color: #FC2C54;
+  border:1rpx solid #FC2C54;
+  border-radius: 15rpx;
+  margin:12rpx 0;
+  
+}
+.dsku-pri{
+  color: #FC2C54;
+  font-size: 40rpx;
+  font-weight: bold;
+  align-items: baseline
+}
+.dskyTop-Rls{
+  font-size: 24rpx;
+  color: #909090
+}
+.dskuBox{
+  width: 100%;
+  padding-bottom: 58rpx;
+  max-height: 500rpx
+}
+.dskyBtn{
+  width: 100%;
+  height: 84rpx;
+   background:linear-gradient(270deg,rgba(252,76,42,1) 0%,rgba(252,44,84,1) 100%);
+  border-radius: 200rpx ;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: #fff;
+  font-weight: bold
+}
+.dskuItem{
+  color: #3E3E4D;
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-bottom: 36rpx
+}
+.dskuItem-con{
+  align-items: center;
+  font-size: 24rpx;
+}
+.dskuItem-ite{
+  padding:8rpx 26rpx;
+  background: #F2F2F2;
+  border-radius: 25rpx;
+  margin-top: 24rpx;
+  margin-right: 24rpx
+}
+.dsky-lack{
+  background: #fff;
+  border:1rpx dashed #D8D8D8;
+  color: #909090
+}
+.dsky-sel{
+  background: #FC2C54;
+  color: #fff
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.dskuNum{
+  width: 100%;
+  align-items: center;
+   font-size: 28rpx;
+   color: #3E3E4D;
+   font-weight: bold
+}
+.dskuNum-num{
+   align-items: center;
+   font-size: 24rpx 
+}
+.dskuNum-num image{
+  width: 48rpx;
+  height: 48rpx;
+}
+.dskuNum-nums{
+  padding:0 20rpx
+}
+.mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }

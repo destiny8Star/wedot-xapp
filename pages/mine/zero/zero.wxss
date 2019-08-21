@@ -1,0 +1,327 @@
+/* pages/mine/zero/zero.wxss */
+.BG{
+   width: 100%;
+   height: 100%;
+   background: #E95554;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: -1
+}
+.free{
+       min-height: 100vh;
+       /* background: #E95554; */
+       padding-top: 130rpx;
+}
+.free-top{
+    width: 100%;
+    height: 130rpx;
+    background: #fff;
+    padding-top: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+     font-size: 34rpx;
+    color: #3E3E4D;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.free-top image{
+    width: 32rpx;
+    height: 32rpx;
+    margin-left: 50rpx
+}
+.free-top-tit{
+   font-size: 30rpx;
+   color: #E95554;
+   margin-right: 36rpx;
+   font-weight: bold
+}
+.free-cont{
+    /* background: #E95554; */
+    
+}
+.top-image{
+    width: 100%;
+    height: 572rpx;
+}
+.free-con{
+    width:100%;
+    padding:20rpx 34rpx 30rpx 39rpx
+}
+.free-item{
+    width: 677rpx;
+    height: 420rpx;
+    /* background-image: url("../../assets/image/free/KUANG.png"); */
+    position: relative;
+    /* background-size: cover; */
+    padding:76rpx 45rpx 62rpx 53rpx;
+    display: flex;
+   align-items: center;
+   justify-content: space-between;
+    margin-bottom: 20rpx
+}
+.free-item-bg{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+.free-item-le{
+    width: 282rpx;
+    height: 282rpx;
+    border-radius: 7rpx
+}
+.free-item-right{
+    width: 263rpx;
+    color: #fff
+}
+.free-line{
+    width: 34rpx;
+    height: 4rpx;
+    background: #fff;
+    border-radius: 1rpx;
+    margin-bottom: 1rpx
+}
+.free-line-tit{
+    width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 38rpx;
+    margin-bottom: 20rpx
+}
+.free-item-price{
+    font-size: 21rpx
+}
+.free-item-price span{
+    font-size: 32rpx;
+    font-weight: bold
+}
+.free-item-info{
+    font-size: 21rpx;
+    margin:10rpx 0
+}
+.free-btn{
+    width: 224rpx;
+    height: 46rpx;
+    background-size: cover;
+    text-align: center;
+    line-height: 46rpx;
+    font-size: 28rpx
+}
+.free-btny{
+    background-image: url("../../assets/image/free/AN.png");
+}
+.free-btny image{
+   width: 35rpx;
+   height: 15rpx;
+   margin-left: 1rpx
+}
+.free-btnb{
+     background-image: url("../../assets/image/free/AN-Z.png"); 
+}
+.free-btnb image{
+    width: 22rpx;
+    height: 22rpx;
+    margin-left: 10rpx
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .6);
+}
+.maska{
+    background: rgba(0, 0, 0, .1)
+}
+.address{
+    width: 100%;
+    padding: 24rpx 64rpx 50rpx;
+    background: #FA4252;
+    position: absolute;
+    left: 0;
+    bottom: 0
+}
+.add-tit{
+    font-size: 36rpx;
+    color:#fff;
+    text-align: center;
+    margin-bottom: 30rpx
+}
+.inp-name{
+    width: 100%;
+    height: 90rpx;
+    background: #fff;
+    border-radius: 6rpx;
+    padding-left: 30rpx;
+    display: flex;
+    align-items: center;
+    font-size: 32rpx;
+    color: #3E3E4D;
+    font-weight: bold;
+    margin-bottom: 30rpx
+}
+.aname{
+    font-size: 30rpx;
+}
+.aname::-webkit-input-placeholder {
+    color: #909090;
+    font-weight: normal
+}
+
+.aname::-moz-placeholder {
+    color: #909090;
+    font-weight: normal
+}
+
+.aname:-ms-input-placeholder {
+    color: #909090;
+    font-weight: normal
+}
+.inp-are{
+    width: 100%;
+    height: 212rpx;
+    background: #fff;
+    padding: 30rpx 30rpx 5rpx;
+    font-size: 32rpx;
+    color: #3E3E4D;
+    font-weight: bold;
+    margin-bottom: 30rpx
+}
+.area{
+        margin-top: 10rpx;
+    width: 100%;
+    font-size: 30rpx;
+}
+.area::-webkit-input-placeholder {
+    color: #909090;
+    font-weight: normal
+}
+
+.area::-moz-placeholder {
+    color: #909090;
+    font-weight: normal
+}
+
+.area:-ms-input-placeholder {
+    color: #909090;
+    font-weight: normal
+}
+.add-btn{
+    width: 100%;
+    height: 90rpx;
+    background: linear-gradient(0deg,rgba(252,219,39,1),rgba(251,228,105,1));
+    border-radius:6rpx;
+    text-align: center;
+    line-height: 90rpx;
+    font-size: 36rpx;
+    color: #7F4E03
+}
+.sureadd{
+    width: 622rpx;
+    height: 426rpx;
+    padding:40rpx 52rpx 0;
+    background: #FA4252;
+    border-radius: 20rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto
+}
+.add-cont{
+     width:100%;
+    height:180rpx;
+    background:rgba(255,255,255,1);
+    box-shadow:0 0 20rpx 0 rgba(250,66,82,1);
+    border-radius:6rpx;
+    margin-bottom: 30rpx;
+    padding:30rpx;
+    font-size: 26rpx;
+    color: #3E3E4D
+}
+.add-np{
+    margin-bottom: 10rpx
+}
+.add-btnbox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 26rpx;
+    color: #7F4E03;
+    text-align: center;
+    line-height: 64rpx
+}
+.q-btn,.s-btn{
+    width: 240rpx;
+    height: 64rpx;
+    background-image: url("../../assets/image/free/QX.png");
+    background-size: cover;
+}
+.s-btn{
+  background-image: url("../../assets/image/free/QR.png");  
+}
+.toshare{
+    width: 100%;
+    height: 550rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom:0;
+    margin: auto;
+}
+.sharebg{
+    width: 554rpx;
+    height: 463rpx;
+    background-image: url("../../assets/image/free/sBJ.png");
+    margin: 0 auto;
+    background-size: cover;
+    padding-top: 170rpx;
+    color: #fff
+}
+.sharebg-tit{
+    width: 360rpx;
+    text-align: center;
+    font-size: 32rpx;
+    margin: 0 auto 50rpx
+}
+.share-btn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 28rpx;
+    padding:0 80rpx
+}
+.sf-btn image{
+    width: 76rpx;
+    height: 76rpx;
+    display: block;
+    margin: 0 auto 10rpx;
+}
+.q-share{
+    width: 41rpx;
+    height: 41rpx;
+    margin:40rpx auto 0
+}
+.q-share image{
+    width: 41rpx;
+    height: 41rpx;
+}
+.add-adr{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}

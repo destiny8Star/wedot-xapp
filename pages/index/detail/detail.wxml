@@ -39,7 +39,7 @@
 <!-- //规格 -->
 <view class="dmine">
     <view class="dmine-top flex">
-       <view class="dmine-name">已选</view>
+       <view class="dmine-name">选择</view>
        <view class="dmine-fx dmine-fx2">请选择颜色，尺码，尺码</view>
        <view class="dmine-right flex_ar">
           <view class="dmint-cir"></view>
@@ -59,13 +59,64 @@
       购物车
    </view>
    <view class="dbot-r flex">
-      <view class="dbot-rL flex">加入购物车</view>
-      <view class="dbot-rM flex">立即购买</view>
+      <view class="dbot-rL flex" bindtap="add">加入购物车</view>
+      <view class="dbot-rM flex" bindtap="add">立即购买</view>
       <view class="dbot-rR flex">
          <view class="dbot-tR-t">推广</view>
          <view class="dbot-tR-b">可赚99元</view>
       </view>
    </view>
 </view>
+<!-- 弹框规格 -->
+<view class="mask" bindtap="hideSKU" hidden="{{!showSKU}}"></view>
+<view class="dsku" hidden="{{!showSKU}}">
+   <!-- 规格上面 -->
+   <view class="dskyTop flex_be">
+         <view class="dskyTop-L"><image src="../../../img/3.jpg"></image></view>
+         <view class="dskyTop-R flex">
+             <view class="dskyTop-Rtit">2019夏装新款韩版修身镂空条纹短袖主标题纹短袖主标题纹短袖主标题纹短袖主标题</view>
+             <view class="dskyTop-Rfx">单件返现1元</view>
+              <view class="dinfo-top flex">
+                <view class="dsku-pri flex"><view class="dinfo-prib">￥</view>77.00</view>
+                <image src="../../../img/i-plus.png"></image>
+            </view>
+            <view class="dskyTop-Rls">零售价 ￥88</view>
+         </view>
+   </view>
 
+   <!-- 规格 -->
+
+   <scroll-view scroll-y class="dskuBox">
+      <block wx:for='{{mallGoodsSkuResps}}' wx:key='{{index}}'>
+          <view class="dskuItem">
+                <view class="dskuItem-tit">{{item.name}}</view>
+                <view class="dskuItem-con flex">
+                    <block wx:for='{{item.itemList}}' wx:for-item='itemList' wx:for-index='itemInd' wx:key='{{itemInd}}'>
+                          <view class="dskuItem-ite {{itemList.isSelect&&itemList.changSel?'':'dsky-lack'}} {{item.selIte==itemList.itemId?'dsky-sel':''}}" data-tid="{{index}}" data-id="{{itemList.itemId}}" data-cans="{{itemList.isSelect}}"data-icans="{{itemList.changSel}}" bindtap="selIte">{{itemList.itemName}}</view>
+                        <!-- <view class="dskuItem-ite dsky-lack">颜色</view>
+                        <view class="dskuItem-ite dsky-sel">颜色</view> -->
+                    </block>
+                </view>
+          </view>
+      </block>
+      <!-- <view class="dskuItem">
+            <view class="dskuItem-tit">颜色</view>
+            <view class="dskuItem-con flex">
+                 <view class="dskuItem-ite">红色</view>
+                 <view class="dskuItem-ite dsky-lack">红色</view>
+            </view>     
+       </view> -->
+   <!-- 数量 -->
+       <view class="dskuNum flex_be">
+           <view class="dskuNum-tit">购买数量</view>
+           <view class="dskuNum-num flex">
+                <image src="../../../img/c-del.png" bindtap='handlerDel'></image>
+                <view class="dskuNum-nums">1</view>   
+                <image src="../../../img/c-add.png" bindtap='handlerAdd'></image>
+           </view>
+       </view>
+   </scroll-view>
+   <!-- 确定按钮 -->
+   <view class="dskyBtn">确定</view>
+</view>
 

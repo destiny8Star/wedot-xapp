@@ -1,6 +1,9 @@
 import Tips from './Tips.js';
 
-const baseURL ='https://farm.isoft.mobi/api/'
+// const baseURL = "http://test.weidianlingshou.com"//测试环境接口域名
+// const baseURL = "https://product.weidianlingshou.com"//生产环境接口域名
+const baseURL ='http://test.dianjishenghuo.cn'
+
 
 export default class Http {
   constructor() {
@@ -18,9 +21,11 @@ export default class Http {
         data = {};
       }
       if (wx.getStorageSync('auth')) {
-        let auth = wx.getStorageSync('auth');
-        data.token = auth.token;
-        data.openid=auth.openid.openid
+        // let auth = wx.getStorageSync('auth');
+        // data.token = auth.token;
+        // data.openid=auth.openid.openid;
+        data.timestamp = Math.round(new Date().getTime() / 1000);
+        data.deviceType='3'
       }
 
       if (method.toUpperCase() == 'POST') {
@@ -35,7 +40,7 @@ export default class Http {
         header: header,
         data: data,
         success: (res) => {
-          
+          // console.log("配置信息",res)
           const wxCode = res.statusCode;
           if (wxCode != 200) {
             reject(res)

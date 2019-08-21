@@ -9,9 +9,12 @@
 }
 .seTop-item{
   height: 100%;
-  max-width: 200rpx;
+  max-width: 180rpx;
   margin-right: 40rpx;
-  line-height: 102rpx
+  line-height: 102rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
 }
 .selBar{
   border-bottom: 2rpx solid #FC2C54
@@ -41,5 +44,8 @@
   text-align: center;
   line-height: 92rpx;
   font-size: 34rpx;
-  color: #fff
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0
 }

@@ -3,6 +3,7 @@
    <view class="cTop-cha">编辑</view>
    购物车
 </view>
+
 <!-- 购物车内容 -->
 <view class="ccont">
    <block wx:for='{{carts}}' wx:key='{{item.id}}'>

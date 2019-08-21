@@ -47,7 +47,7 @@
     </view>
 </view>
 <!-- 零元商品 -->
-<view class="mzero"><image src="../../img/m-zero.png"></image></view>
+<view class="mzero" bindtap="toPub"><image src="../../img/m-zero.png"></image></view>
 <!-- 我的服务 -->
 <view class="morder">
     <view class="morderBox">
@@ -57,7 +57,7 @@
         </view>
         <view class="morder-list flex_ar">
           <block wx:for='{{sList}}' wx:key='{{item.id}}'>
-            <view class="sorder-item">
+            <view class="sorder-item" bindtap="toSer" data-id="{{item.id}}">
               <image src="{{item.img}}"></image>
               {{item.name}}
             </view>
