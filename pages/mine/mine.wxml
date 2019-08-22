@@ -3,10 +3,10 @@
 <view class="mtop">
   <image src="../../img/m-top.png" class="mtop-bg"></image>
   <view class="mtop-t flex">
-      <image src="../../img/3.jpg" class="mtop-head"></image>
+      <image src="{{userInfo.avatarUrl}}" class="mtop-head"></image>
       <view class="mtop-tR">
          <view class="mtop-tR-top flex">
-             点击生活
+             {{userInfo.nickName}}
              <view class="mtop-tR-topbox">
                  <image src="../../img/m-thy.png" class="m-hy"></image>
                  买手会员

@@ -16,13 +16,15 @@ export default class AuthApi extends BaseApi {
     });
   }
   //获取openid
-  login(code) {
-    return this.get('wxOpenid', {
-      'js_code': code
+  login(code,e) {
+    return this.post('/api/smallPro/Login/wxLogin', {
+      'code': code,
+      'encryptedData': e.detail.encryptedData,
+      "iv":e.detail.iv
     });
   }
 
-  //微信授权
+  //发送给后台的
   sendInfo(auth, userIfo) {
     // console.log(auth,userIfo)
     return this.post('wxLogin', {
@@ -33,11 +35,14 @@ export default class AuthApi extends BaseApi {
     })
 
   }
-  saveAuthInfo(auth) {
-    // console.log('auto', auth);
+  //保存信息
+  saveAuthInfo(auth,e) {
+    console.log('auto', auth,e);
     let data = auth.data
+    let info = e.detail.userInfo
     wx.setStorageSync('auth', data);
-    return auth.data;
+    wx.setStorageSync('userInfo', info);
+    return auth;
   }
   //保存获取用户信息
   syncUserInfo() {

@@ -4,6 +4,7 @@
     "pages/cart/cart",
     "pages/mall/mall",
     "pages/mine/mine",
+    "pages/shouquan/shouquan",
     "pages/index/detail/detail",
     "pages/mine/order/order",
     "pages/cart/commitOr/commitOr",

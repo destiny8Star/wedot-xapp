@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo:'',//用户信息 
     mineCont:[  //我的上面部分
      {
        id:"1",
@@ -91,7 +92,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+     let userInfo=wx.getStorageSync('userInfo')
+     this.setData({
+       userInfo: userInfo  
+     })
   },
 
   /**

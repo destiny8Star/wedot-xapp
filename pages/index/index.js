@@ -100,6 +100,12 @@ Page({
     })
   },
   onLoad: function() {
+    let  openId=wx.getStorageSync("auth").openId;
+    if(!openId){
+      wx.navigateTo({
+        url: '/pages/shouquan/shouquan',
+      })
+    }
   },
 
 })

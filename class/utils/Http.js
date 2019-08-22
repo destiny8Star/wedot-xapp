@@ -2,7 +2,7 @@ import Tips from './Tips.js';
 
 // const baseURL = "http://test.weidianlingshou.com"//测试环境接口域名
 // const baseURL = "https://product.weidianlingshou.com"//生产环境接口域名
-const baseURL ='http://test.dianjishenghuo.cn'
+const baseURL ='http://192.168.1.138:8188'
 
 
 export default class Http {
