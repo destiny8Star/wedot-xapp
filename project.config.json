@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -118,6 +118,12 @@
 					"name": "授权",
 					"pathName": "pages/shouquan/shouquan",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "绑定手机号",
+					"pathName": "pages/bindPhone/bindPhone",
 					"scene": null
 				}
 			]

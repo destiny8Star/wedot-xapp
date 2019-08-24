@@ -1,0 +1,56 @@
+/* pages/bindPhone/bindPhone.wxss */
+page{
+  background: #f8f8f8
+}
+.top{
+  width: 100%;
+  padding:42rpx 26rpx;
+  background: #fff
+}
+.inpbox{
+  margin-bottom: 24rpx;
+}
+.inpName{
+  font-size: 28rpx;
+  color: #3E3E4D;
+  margin-bottom: 24rpx
+}
+.ibox{
+  width: 100%;
+  border-bottom:2rpx solid #C0C0C0;
+  border-radius: 8rpx;
+  height: 94rpx;
+  align-items: center
+}
+.input{
+  padding-left: 36rpx;
+  font-size: 32rpx;
+  color: #3E3E4D
+}
+.ibox-right{
+  width: 212rpx;
+  align-items: center;
+}
+.line{
+  width: 2rpx;
+  height: 48rpx;
+  background: #909090
+}
+.btn_yzm{
+  font-size: 28rpx;
+  color: #FC2C54;
+  width: 210rpx;
+  text-align: center
+}
+.btn_bind{
+  width: 642rpx;
+  height: 92rpx;
+  background: #FC2C54;
+  font-size: 34rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 92rpx;
+  margin: 20rpx auto;
+  border-radius: 16rpx;
+
+}

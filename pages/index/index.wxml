@@ -3,7 +3,7 @@
 <import src="../../template/pubt/pubo.wxml"/>
 <!-- 悬浮顶部 -->
 <view class="ifloat flex">
-   <view class="ifloatL flex">
+   <view class="ifloatL flex" bindtap="selCity">
      <view class="ifloatL-woc">杭州</view>
      <image src="../../img/i-dow.png"></image>
    </view>
@@ -17,9 +17,9 @@
 <view class="itop">
     <image class="itop-bg" src='../../img/i-top.png'></image>
     <swiper autoplay="false" interval="3000" duration="500" circular='true' easing-function="easeInOutCubic" class='ibanner'>
-        <block wx:for="{{imgUrls}}" wx:key="ind">
+        <block wx:for="{{homeInfo.banners}}" wx:key="ind">
           <swiper-item>
-            <image src="{{item}}" class="slide-image" width="355" height="150"/>
+            <image src="{{item.detailPic}}" class="slide-image" width="355" height="150"/>
           </swiper-item>
         </block>
     </swiper>
@@ -28,10 +28,10 @@
 <view class='iad'></view>
 <!-- tab -->
 <view class='itab flex_ar'>
-    <block wx:for='[1,1,1,1]1' wx:key='item.id'>
-       <view class='itab-item'>
-          <image src='../../img/i-tab1.png'></image>
-          <view class='itab-p'>服装鞋靴</view>
+    <block wx:for='{{homeInfo.icon1}}' wx:key='item.id'>
+       <view class='itab-item' hidden='{{index>4}}'>
+          <image src='{{item.detailPic}}'></image>
+          <view class='itab-p'>{{item.mainTitle}}</view>
        </view>
     </block> 
 </view>
@@ -39,7 +39,7 @@
 <view class="iinfos flex">
    <image src="../../img/i-infos.png"></image>
     <swiper autoplay="false" interval="3000" duration="500" circular='true' easing-function="easeInOutCubic" class='iinfosbox'vertical="true">
-        <block wx:for="{{infos}}" wx:key="ind">
+        <block wx:for="{{homeInfo.messages}}" wx:key="ind">
           <swiper-item class="iinfositem">
              {{item}}
           </swiper-item>
@@ -47,10 +47,10 @@
     </swiper>
 </view>
 <!-- 中间广告 -->
-<view class="iban"><image src="../../img/i-ban.png"></image></view>
+<view class="iban"><image src="{{homeInfo.banner2.detailPic}}"></image></view>
 <view class="ibans flex">
-   <block wx:for="{{imgUrls}}" wx:key="item.id">
-       <view class="ibans-item"><image src="{{item}}"></image></view>
+   <block wx:for="{{homeInfo.icon2 }}" wx:key="item.id">
+       <view class="ibans-item"><image src="{{item.detailPic}}"></image></view>
    </block>
 </view>
 <!-- 商品列表 -->
@@ -63,13 +63,13 @@
     </view>
     <view class="listbox flex">
        <view class="listLeft">
-          <block wx:for='{{goods}}' wx:key="{{item.id}}">
-             <template is='pubt' wx:if="{{item.id % 2==1}}" data="{{...item}}" ></template>
+          <block wx:for='{{goods}}' wx:key="{{index}}">
+             <template is='pubt' wx:if="{{index % 2==1}}" data="{{...item}}" ></template>
           </block>
        </view>
        <view class="listRight">
           <block wx:for='{{goods}}' wx:key="{{item.id}}">
-            <template is='pubo' wx:if="{{item.id % 2==0}}" data="{{...item}}" ></template>
+            <template is='pubo' wx:if="{{index % 2==0}}" data="{{...item}}" ></template>
           </block>  
        </view>
     </view>

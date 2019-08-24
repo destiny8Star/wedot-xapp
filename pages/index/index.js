@@ -1,9 +1,10 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+import Tips from '../../class/utils/Tips.js'
 Page({
   data: {
+    homeInfo:'',//首页信息
     imgUrls: [
       'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
       'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
@@ -48,55 +49,46 @@ Page({
       },
     ]
   },
-  //事件处理函数
-
-  toCa() {
-    let a = {
-      appId: "wx47dd0a081d4de706",
-      nonceStr: "jdkE0lMK1E6cE7Ed",
-      package: "prepay_id=wx08160153076824f8e87698a91894058887",
-      paySign: "DC285180E24A6E7F213BC2EF4F2D333B",
-      signType: "MD5",
-      timeStamp: "1557302512"
-    }
-    wx.scanCode({
+  //选择城市
+  selCity(){
+    wx.getSetting({
       success(res) {
-        console.log(res)
-        wx.requestPayment({
-          'timeStamp': a.timeStamp,
-          'nonceStr': a.nonceStr,
-          'package': a.package,
-          'signType': 'MD5',
-          'paySign': a.paySign,
-          'success': function(res) {
-            Tips.loaded()
-            console.log('支付成功', res)
-            Tips.toast('支付成功', function() {
-              wx.redirectTo({
-                url: '/pages/mine/Allorders/Allorders?cur=0',
-              })
-            })
-          },
-          'fail': function(res) {
-            Tips.loaded()
-            Tips.alert('支付失败')
-            setTimeout(function() {
-              wx.redirectTo({
-                url: '/pages/mine/Allorders/Allorders?cur=0',
-              })
-            }, 1000)
-          },
-        })
+        console.log(res.authSetting)
+        if (!res.authSetting['scope.userLocation']){
+            wx.authorize({
+              scope: 'scope.userLocation',
+              success(res) {
+                  console.log("rre",res)
+             },
+             fail(rej){
+               console.log("rejjjjjjjjjj")
+              //  Tips.modal("去打开获取位置权限","提示").then(res=>{
+              //    if (res.confirm){
+              //      console.log("待机确定", res)
+              //          wx.openSetting({  必须要点击的时候直接调用
+              //               success(res) {
+              //                 console.log(res.authSetting)
+              //             }
+              //      })
+              //    }
+              
+              //  })
 
-
-
+             }
+           })
+        }
+     
       }
     })
+    // wx.chooseLocation(function(res){
+    //   console.log("res")
+    // })
   },
   //去详情页
-  toDetail(){
+  toDetail(e){
+    let gid=e.currentTarget.dataset.gid
     wx.navigateTo({
-      url: 'detail/detail',
+      url: 'detail/detail?gid='+gid,
     })
   },
   onLoad: function() {
@@ -105,7 +97,33 @@ Page({
       wx.navigateTo({
         url: '/pages/shouquan/shouquan',
       })
+      return
     }
+    //获取首页信息
+    Tips.loading()
+    app.auth.getHome().then(res=>{
+      Tips.loaded()
+      console.log("获取信息",res)
+      this.setData({
+        homeInfo:res.data
+      })
+    }).catch(rej=>{
+      Tips.loaded()
+      Tips.alert("网络异常")
+    })
+    this.getList()
+  },
+  // 获取商品列表
+  getList(){
+    app.auth.getGoods().then(res=>{
+      console.log("获取商品",res)
+      this.setData({
+        goods:res.data.data
+      })
+    })
+  },
+  onShow(){
+    
   },
 
 })

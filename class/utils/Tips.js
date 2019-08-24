@@ -128,7 +128,7 @@ export default class Tips {
       wx.showModal({
         title: title,
         content: text,
-        showCancel: false,
+        showCancel: true,
         success: res => {
           resolve(res)
         },

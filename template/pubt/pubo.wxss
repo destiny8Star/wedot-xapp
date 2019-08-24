@@ -5,6 +5,11 @@
   overflow: hidden;
   margin-bottom: 14rpx
 }
+.puboimgBG{
+ width: 344rpx;
+  height: 344rpx;
+  background: #c9c9c9
+}
 .puboimg{
   width: 344rpx;
   height: 344rpx;

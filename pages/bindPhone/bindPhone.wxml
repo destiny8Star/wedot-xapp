@@ -1,0 +1,24 @@
+<!--pages/bindPhone/bindPhone.wxml-->
+<form bindsubmit="formSubmitl">
+<view class="top">
+   <view class="inpbox">
+       <view class="inpName">手机号</view>
+       <view class="ibox flex_be">
+           <input class="input" placeholder="请输入手机号"placeholder-style='color:#909090' name='phone' bindinput="blurPhonel" type="number"></input>
+           <view class="ibox-right flex">
+              <view class="line"></view>
+              <view class="btn_yzm" bindtap="getYZM">{{getText}}</view>
+           </view>
+       </view>
+   </view>
+    <view class="inpbox">
+       <view class="inpName">验证码</view>
+       <view class="ibox flex_be">
+           <input class="input" placeholder="请输入验证码"placeholder-style='color:#909090'  maxlength='6' name="code" type="number"></input>
+           
+       </view>
+   </view>
+</view>
+</form>
+<!-- 确定 -->
+<view class="btn_bind">确定</view>

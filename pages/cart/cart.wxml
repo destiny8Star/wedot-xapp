@@ -1,35 +1,36 @@
 <!--pages/cart/cart.wxml-->
 <view class="cTop flex">
-   <view class="cTop-cha">编辑</view>
+   <view class="cTop-cha" bindtap="edite" >{{top?'编辑':'完成'}}</view>
    购物车
 </view>
 
 <!-- 购物车内容 -->
 <view class="ccont">
-   <block wx:for='{{carts}}' wx:key='{{item.id}}'>
+   <block wx:for='{{carts}}' wx:key='{{index}}'>
     <view class="ccont-itembox">
         <view class="ccont-itemTit flex">
-          <image src="{{allSel?selS:selN}}" class="c-acimg"></image>
+          <image src="{{item.selected?selS:selN}}" class="c-acimg" bindtap="handlerSs" data-index="{{index}}"></image>
           <image src="../../img/c-st.png" class="c-st"></image>
-          <view class="c-sname">{{item.shopname}}</view>
+          <view class="c-sname">{{item.storeName}}</view>
         </view>
-        <block wx:for='{{item.goods}}' wx:key='{{item.goods.id}}' wx:for-item="goods">
+        <block wx:for='{{item.tradeCartItemListDTOS}}' wx:key='{{gind}}' wx:for-item="goods"wx:for-index="gind">
           <view class="c-goods">
              <view class="c-goodsTop flex">
-                        <image src="{{allSel?selS:selN}}" class="c-acimg"></image>
-                        <image src="../../img/3.jpg" class="c-goodsImg"></image>
+                        <image src="{{goods.selected?selS:selN}}" class="c-acimg" bindtap="handlerSg" data-gind="{{gind}}" data-sind="{{index}}"></image>
+                        <image src="{{goods.goodsPic}}" class="c-goodsImg"></image>
                         <view class="c-Gwoc">
-                            <view class="c-Gwoc-d">{{goods.name}}</view>
-                              <view class="c-Gwoc-sty">灰色；XL；加绒加厚</view>
+                            <view class="c-Gwoc-d">{{goods.goodsName}}</view>
+                              <view class="c-Gwoc-sty">{{goods.sku}}</view>
                             <view class="c-Gwoc-bot flex_be">
                                 <view class="c-Gwoc-botL flex">
                                   <view class="c-Gwoc-botLfx">返现</view>
-                                  <view class="c-Gwoc-botLnum flex">单件返现<view style="color:#FC2C54">{{goods.refx}}</view>元</view>
+                                  <view class="c-Gwoc-botLnum flex">单件返现<view style="color:#FC2C54">{{goods.returnMoney}}</view>元</view>
                                 </view>
                                 <view class="c-Gwoc-botR flex">
-                                  <image src="../../img/c-del.png" bindtap='handlerDel'></image>
+                                  <image src="../../img/c-del.png" hidden="{{goods.num!=1}}"></image>
+                                  <image src="../../img/c-del2.png"  hidden="{{goods.num==1}}" bindtap="handlerNum" data-sind="{{index}}" data-gind="{{gind}}" data-tid="{{goods.tradeCartItemId}}" data-num="{{goods.num}}" data-ty="1"></image>
                                   <view class="c-Gwoc-botRnum">{{goods.num}}</view>   
-                                  <image src="../../img/c-add.png" bindtap='handlerAdd'></image>
+                                  <image src="../../img/c-add.png" bindtap="handlerNum" data-sind="{{index}}" data-gind="{{gind}}" data-tid="{{goods.tradeCartItemId}}" data-num="{{goods.num}}" data-ty="2"></image>
                                 </view>
                             </view> 
                         </view>
@@ -43,9 +44,11 @@
 <!-- 购物车结算 -->
 <view class="caccount flex_be">
   <view class="ca-left flex_be">
-    <image src="{{allSel?selS:selN}}" class="c-acimg"></image>
-    <view class="c-actit">全选</view>
-    <view class="c-acnum">合计:￥220</view>
+    <image src="{{allSel?selS:selN}}" class="c-acimg" bindtap="handlerSa"></image>
+    <view class="c-actit" >全选</view>
+    <view class="c-acnum" hidden="{{!top}}">合计:￥{{total}}</view>
   </view>
-  <view class="ca-right">去结算(1)</view>
+  <view class="ca-right" hidden="{{!top}}">去结算({{toNum}})</view>
+  <view class="ca-right" hidden="{{top}}" bindtap="delCar">删除</view>
+
 </view>

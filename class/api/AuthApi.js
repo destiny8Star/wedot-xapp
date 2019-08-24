@@ -36,27 +36,86 @@ export default class AuthApi extends BaseApi {
 
   }
   //保存信息
-  saveAuthInfo(auth,e) {
-    console.log('auto', auth,e);
+  saveAuthInfo(auth) {
+    console.log('auto', auth);
     let data = auth.data
-    let info = e.detail.userInfo
+    // let info = e.detail.userInfo
     wx.setStorageSync('auth', data);
-    wx.setStorageSync('userInfo', info);
-    return auth;
+    // wx.setStorageSync('userInfo', info);
+    return data;
   }
   //保存获取用户信息
-  syncUserInfo() {
-    // let token=wx.getStorageSync('auth').token
-    // let resl = {
-    //   'openid': res.data.openid,
-    //   "token":token
-    // };
-    return this.get('userInfo').then(res => {
+  syncUserInfo(res) {
+    let openId=res.openId;
+    return this.post('/api/smallPro/Login/userInfo',{
+      openId:openId
+    })
+    .then(res => {
+      console.log("获取后台的user", res)
+      
       wx.setStorageSync('user', res.data)
       return res
     })
   }
-  
+
+  //获取验证码
+  getIndCode(phone) {
+    return this.post('/api/third/smsCode', {
+      phone: phone
+    })
+  }
+//获取首页信息
+getHome(){
+  return this.post('/api/smallPro/Login/home')
+}
+//获取商品列表
+getGoods(){
+  return this.post('/api/smallPro/Login/home/goods',{
+    cursor: 1,
+    size:10
+  })
+}
+//获取商品详情
+getDetail(gid){
+  return this.post('/api/smallPro/Login/goodsId',{
+    goodsId:gid
+  })
+}
+//获取sku
+getSku(gid){
+  return this.post('/api/smallPro/Login/goods/sku',{
+    goodsId: gid
+  })
+}  
+//添加购物车
+addCar(info,gnum){
+  return this.post('/api/smallPro/Login/tradeCart/add',{
+    goodsId: info.skuId,
+    goodsNo: gnum,
+
+  })
+}
+//购物车列表
+  carList(openId,page){
+  return this.post('/api/smallPro/Login/shoppingTrolleyList',{
+    openId:openId,
+    pageNum:page
+  })
+}
+//数量修改
+  changeNum(tid, goodsNo){
+    return this.post('/api/smallPro/Login/addNum',{
+      tradeCartItemId:tid,
+      goodsNo:goodsNo
+    })
+}
+//删除
+delCar(sid,tid){
+  return this.post('/api/smallPro/Login/updateTradeCart',{
+    storeIds: sid,
+    tradeCartItemIds:tid,
+  })
+}
   //实名认证上传图片
   // sendImg(type,arr) {
   //   let auth = wx.getStorageSync('auth');

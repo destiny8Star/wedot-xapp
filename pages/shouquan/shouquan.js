@@ -15,7 +15,8 @@ Page({
     Tips.loading();
     app.auth.getCode()
       .then(res => app.auth.login(res,e))
-      .then(res => app.auth.saveAuthInfo(res,e))
+      .then(res => app.auth.saveAuthInfo(res))
+      .then(res => app.auth.syncUserInfo(res))
       .then(res=>{
          console.log('保存了信息',res)
          Tips.loaded();
@@ -26,10 +27,13 @@ Page({
              })
            })
          }else{
+           wx.clearStorageSync('auth')
            Tips.alert('授权失败!')
          }
       })
-      .catch(rej => Tips.alert('授权失败!'))
+      .catch(rej => {
+        wx.clearStorageSync('auth')
+        Tips.alert('授权失败!')})
   },
   /**
    * 生命周期函数--监听页面加载

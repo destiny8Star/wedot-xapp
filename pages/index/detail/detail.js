@@ -1,20 +1,27 @@
 // pages/index/detail/detail.js
+import Tips from '../../../class/utils/Tips.js'
+const app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgUrls: [
-      'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-      'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
-      'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
-    ],
+    // imgUrls: [
+    //   'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
+    //   'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
+    //   'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
+    // ],
+    gInfo:{}, //商品信息
     showSKU:false, //false不展示
     mallGoodsSkuResps:[], //规格
     skuListResps:[], //符合的数组
-    hasArr:[],  //已经选择的规格类型[0,1,2]
-
+    hasArr:[],  //已经选择的规格类型的id[0,1,2]
+    selDone:{},  //选择的结果对象
+    textHS:"选择",  //选择的内容，在页面上展示
+    gnum:"1",   //购买数量
+    isAll:false, //判断是否全选
+    addbuy:"",   //1为加入购物车，2为购买
   },
   //去购物车
   toCart(){
@@ -23,9 +30,13 @@ Page({
     })
   },
   //加入购买
-  add(){
+  add(e){
+    let addbuy=e.currentTarget.dataset.id 
+    /**判断有没有sku */
+
     this.setData({
-      showSKU:true
+      showSKU:true,
+      addbuy: addbuy
     })
   },
   //隐藏
@@ -40,22 +51,66 @@ Page({
       delta:1
     })
   },
-  //隐藏弹框
-  hideMask(){
-
+  //增加
+  addNum(){
+    let gnum=this.data.gnum;
+    gnum++
+    this.setData({
+      gnum:gnum
+    })
   },
+  //减少
+  delNum() {
+    let gnum = this.data.gnum;
+    gnum--
+    this.setData({
+      gnum: gnum
+    })
+  },
+  //确定
+  confirmDo(){
+     let isAll=this.data.isAll
+    let addbuy = this.data.addbuy
+    let gnum=this.data.gnum
+    let selDone=this.data.selDone
+    /**判断数量是否超出 */
+     if(!isAll) return   //没有选全就返回
+    if (gnum > selDone.stock){
+      Tips.alert("库存不足")
+      return 
+    }
+     if(addbuy==1){
+       Tips.loading()
+       app.auth.addCar(selDone,gnum)
+       .then(res=>{
+         Tips.loaded()
+         if(res.code==200) Tips.toast('加入成功')
+         console.log("加入购物车",res)
+       })
+       .catch(rej=>{
+         Tips.loaded()
+         console.log("加入购物车", rej)
+
+         Tips.alert('加入失败')
+         })
+     } else if (addbuy==2){
+       console.log("立即购买")
+     }
+  },
+ 
   //选择sku
   selIte(e){
     let id=e.currentTarget.dataset.id;  //当前skuid
     let cans = e.currentTarget.dataset.cans; //是否可以点击
     let icans = e.currentTarget.dataset.icans; //是否可以点击
     let tid = e.currentTarget.dataset.tid;  //规格类型的id
-
     if (!cans||!icans) return   //拦截不能点击的
     
     let mallGoodsSkuResps = this.data.mallGoodsSkuResps
     let skuListResps = this.data.skuListResps
-    let hasArr=this.data.hasArr;
+    let hasArr=this.data.hasArr;  //已经选择了哪个
+    let isAll = this.data.isAll  //是否全选择了
+
   
     let leng = mallGoodsSkuResps.length
 
@@ -64,6 +119,7 @@ Page({
      //取消点击
     if (mallGoodsSkuResps[tid].selIte==id){   
       mallGoodsSkuResps[tid].selIte=''
+      isAll=false
       let ind=hasArr.findIndex(function(e){
               return e==tid
       })
@@ -150,10 +206,17 @@ Page({
           }
         }
       }
+      //在这里控制外面的展示为默认
+      let textHS="选择"
+      mallGoodsSkuResps.forEach(function (e) {
+        textHS += " " + e.name
+      })
 
       this.setData({
         mallGoodsSkuResps: mallGoodsSkuResps,
-        // hasArr: hasArr
+        hasArr: hasArr,
+        textHS: textHS,
+        isAll: isAll
       })
       return 
     }
@@ -168,23 +231,13 @@ Page({
         let filArr = skuListResps.filter(function (item) {      //筛选包含点击的id的数组
           return item['sku' + (tid + 1) + 'Id'] == id
         })
-        // for (let i = 0; i < leng; i++) {
-        //   // types[i] = []
-        //   if (!hasArr.includes(i)) {
-        //     mallGoodsSkuResps[i].itemList.forEach(function (item) {
-        //       item.changSel = 0   //这里要处理下，出问题了!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //     })
-        // }}
-        // canSArr = filArr
+      
         for (let i = 0; i < leng; i++) {
-          // types[i] = []
-          // if (!hasArr.includes(i)) { //这里!!!!!!!!!!!!!!!!!!!!!!!!
           if (i != tid) {
             mallGoodsSkuResps[i].itemList.forEach(function (item) {
-              item.changSel = 0   //这里要处理下，出问题了!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+              item.changSel = 0   //这里要处理下
             })
             filArr.forEach(function (e) {
-              // types[i].push(e['sku' + (i+1) + 'Id'])
               mallGoodsSkuResps[i].itemList.forEach(function (item) {
                 if (item.itemId == e['sku' + (i + 1) + 'Id']) {
                   item.changSel = 1
@@ -256,7 +309,7 @@ Page({
         for (let i = 0; i < leng; i++) {
           if (i != tid) {
             mallGoodsSkuResps[i].itemList.forEach(function (item) {
-              item.changSel = 0   //
+              item.changSel = 0   
             })
           }
         }
@@ -280,44 +333,51 @@ Page({
             }
           })
         })
+        console.log("看下bug", mallGoodsSkuResps)
       }
+      /**在这里处理最终结果，获取金额和图片等 */
+      let selDone = this.data.selDone
+      isAll= mallGoodsSkuResps.every(function (e) {
+        return e.selIte!=''
+      })
+      if(isAll){
+        let textHS = '已选'  
+        if (leng==1){
+          selDone = skuListResps.find(function (e) {
+                return e.sku1Id == mallGoodsSkuResps[0].selIte
+            })
+        } else if (leng==2){
+          selDone = skuListResps.find(function (e) {
+              return e.sku1Id == mallGoodsSkuResps[0].selIte && e.sku2Id == mallGoodsSkuResps[1].selIte
+            })
+        } else if (leng==3) {
+            selDone = skuListResps.find(function (e) {
+              return e.sku1Id == mallGoodsSkuResps[0].selIte && e.sku2Id == mallGoodsSkuResps[1].selIte && e.sku3Id == mallGoodsSkuResps[2].selIte
+            })
+          }
+        //在外面展示的字
+        mallGoodsSkuResps.forEach(function (e) {
+            e.itemList.forEach(function(item){
+              if (e.selIte == item.itemId){
+                textHS +=" "+ item.itemName
+              }
+            })
+        })
+        this.setData({
+          textHS: textHS
 
-      // mallGoodsSkuResps.forEach(function(e){
-      //   if (e.selIte)
-      // })
-      // let selArr = []
-      // for(let i=0;i<leng;i++){
-      //   selArr.push(mallGoodsSkuResps[i].selIte)
-      // }
-      // console.log("aaaa", selArr)
-      //   let isAll=selArr.every(function(item){
-      //           return item
-      //   })
-      // if (isAll) return
+        })
+      }
+    
+      console.log("e.items", leng, isAll, selDone, mallGoodsSkuResps)
+    
 
-      // for (let i = 0; i < leng; i++) {
-      //   // types[i] = []
-      //   // if (!hasArr.includes(i)) { //这里!!!!!!!!!!!!!!!!!!!!!!!!
-      //   if (i!=tid) { 
-      //     mallGoodsSkuResps[i].itemList.forEach(function (item) {
-      //       item.changSel = 0   //这里要处理下，出问题了!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      //     })
-      //     canSArr.forEach(function (e) {
-      //       // types[i].push(e['sku' + (i+1) + 'Id'])
-      //       mallGoodsSkuResps[i].itemList.forEach(function (item) {
-      //         if (item.itemId == e['sku' + (i + 1) + 'Id']) {
-      //           item.changSel = 1
-      //         }
-
-      //       })
-      //     })
-      //   }
-      // }
-      // console.log("修改后的", mallGoodsSkuResps)
-
+    //  console.log("筛选的",selDone)
       this.setData({
         mallGoodsSkuResps:mallGoodsSkuResps,
-        // hasArr: hasArr
+        hasArr: hasArr,
+        selDone: selDone,
+        isAll: isAll
       })
       return
     }
@@ -326,7 +386,46 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let gid=options.gid
+    let textHS = this.data.textHS
+    console.log("获取gid",gid)
+    let that=this
+    Tips.loading()
+    app.auth.getDetail(gid).then(res=>{
+      Tips.loaded()
+      console.log("获取详情",res)
+      that.setData({
+        gInfo:res.data
+      })
+      if(res.data.isSku==0){
+        return true
+      }
+    })
+    .then(res=>{
+      console.log("res",res)
+      if(res){
+        app.auth.getSku(gid)
+        .then(res=>{
+          console.log("获取sku",res)
+          
+          res.data.mallGoodsSkuResps.forEach(function (e) {
+            e.selIte = ''
+            e.itemList.forEach(function (e) { e.changSel = 1 })
+            textHS+=" "+e.name
+            // console.log("e",e)
+          })
+          that.setData({
+            mallGoodsSkuResps: res.data.mallGoodsSkuResps,
+            skuListResps: res.data.skuListResps,
+            textHS: textHS
+          })
+        })
+      }
+    })
+    .catch(rej=>{
+      Tips.loaded()
+      Tips.alert("网络异常")
+    })
   },
 
   /**
@@ -340,135 +439,135 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let res = {
-      "code": 0,
-      "data": {
-        "mallGoodsSkuResps": [
-          {
-            "itemList": [
-              {
-                "isSelect": 0, //0灰色，1正常
-                "itemId":197,
-                "itemName": "男款"
-              },
-              {
-                "isSelect": 1, //0灰色，1正常
-                "itemId": 198,
-                "itemName": "女款"
-              },
-              {
-                "isSelect": 1, //0灰色，1正常
-                "itemId": 199,
-                "itemName": "中性款"
-              }
-            ],
-            "name": "款式"
-          },
-          {
-            "itemList": [
-              {
-                "isSelect": 1, //0灰色，1正常
-                "itemId":201,
-                "itemName": "s"
-              },
-              {
-                "isSelect": 0, //0灰色，1正常
-                "itemId": 202,
-                "itemName": "m"
-              },
-              {
-                "isSelect": 1, //0灰色，1正常
-                "itemId": 203,
-                "itemName": "l"
-              }
-            ],
-            "name": "尺寸"
-          },
-          {
-            "itemList": [
-              {
-                "isSelect": 1, //0灰色，1正常
-                "itemId": 301,
-                "itemName": "哈哈哈"
-              },
-              {
-                "isSelect":1, //0灰色，1正常
-                "itemId": 302,
-                "itemName": "呵呵呵呵"
-              },
-              {
-                "isSelect": 1, //0灰色，1正常
-                "itemId": 303,
-                "itemName": "嘿嘿"
-              }
-            ],
-            "name": "其他"
-          },
-        ],
-        "skuListResps": [
-          {
-            "pic": "../../../img/3.jpg",
-            "price": "112",
-            "rebatePrice": "3",
-            "sku1Id": 198,
-            "sku2Id": 201,
-            "sku3Id": 301,
-            "skuId": 6933,
-            "stock": 10
-          },
-          {
-            "pic": "../../../img/3.jpg",
-            "price": "112",
-            "rebatePrice": "3",
-            "sku1Id": 198,
-            "sku2Id": 203,
-            "sku3Id": 301,
-            "skuId": 6934,
-            "stock": 10
-          },
-          {
-            "pic": "../../../img/3.jpg",
-            "price": "112",
-            "rebatePrice": "3",
-            "sku1Id": 199,
-            "sku2Id": 201,
-            "sku3Id": 301,
-            "skuId": 6935,
-            "stock": 10
-          },
-          {
-            "pic": "../../../img/3.jpg",
-            "price": "112",
-            "rebatePrice": "3",
-            "sku1Id": 199,
-            "sku2Id": 201,
-            "sku3Id": 303,
-            "skuId": 6935,
-            "stock": 10
-          },
-          {
-            "pic": "../../../img/3.jpg",
-            "price": "112",
-            "rebatePrice": "3",
-            "sku1Id": 198,
-            "sku2Id": 201,
-            "sku3Id": 303,
-            "skuId": 6935,
-            "stock": 10
-          }
-        ]
-      },
-      "message": "ok"
-    }
-    res.data.mallGoodsSkuResps.forEach(function(e){
-        e.selIte = ''
-      e.itemList.forEach(function(e){e.changSel=1})
-        // console.log("e",e)
-    })
-    this.setData({
-      mallGoodsSkuResps: res.data.mallGoodsSkuResps,
-      skuListResps: res.data.skuListResps
-    })
+    // let res = {
+    //   "code": 0,
+    //   "data": {
+    //     "mallGoodsSkuResps": [
+    //       {
+    //         "itemList": [
+    //           {
+    //             "isSelect": 0, //0灰色，1正常
+    //             "itemId":197,
+    //             "itemName": "男款"
+    //           },
+    //           {
+    //             "isSelect": 1, //0灰色，1正常
+    //             "itemId": 198,
+    //             "itemName": "女款"
+    //           },
+    //           {
+    //             "isSelect": 1, //0灰色，1正常
+    //             "itemId": 199,
+    //             "itemName": "中性款"
+    //           }
+    //         ],
+    //         "name": "款式"
+    //       },
+    //       {
+    //         "itemList": [
+    //           {
+    //             "isSelect": 1, //0灰色，1正常
+    //             "itemId":201,
+    //             "itemName": "s"
+    //           },
+    //           {
+    //             "isSelect": 0, //0灰色，1正常
+    //             "itemId": 202,
+    //             "itemName": "m"
+    //           },
+    //           {
+    //             "isSelect": 1, //0灰色，1正常
+    //             "itemId": 203,
+    //             "itemName": "l"
+    //           }
+    //         ],
+    //         "name": "尺寸"
+    //       },
+    //       {
+    //         "itemList": [
+    //           {
+    //             "isSelect": 1, //0灰色，1正常
+    //             "itemId": 301,
+    //             "itemName": "哈哈哈"
+    //           },
+    //           {
+    //             "isSelect":1, //0灰色，1正常
+    //             "itemId": 302,
+    //             "itemName": "呵呵呵呵"
+    //           },
+    //           {
+    //             "isSelect": 1, //0灰色，1正常
+    //             "itemId": 303,
+    //             "itemName": "嘿嘿"
+    //           }
+    //         ],
+    //         "name": "其他"
+    //       },
+    //     ],
+    //     "skuListResps": [
+    //       {
+    //         "pic": "../../../img/3.jpg",
+    //         "price": "153",
+    //         "rebatePrice": "3",
+    //         "sku1Id": 198,
+    //         "sku2Id": 201,
+    //         "sku3Id": 301,
+    //         "skuId": 6933,
+    //         "stock": 10
+    //       },
+    //       {
+    //         "pic": "../../../img/3.jpg",
+    //         "price": "167",
+    //         "rebatePrice": "3",
+    //         "sku1Id": 198,
+    //         "sku2Id": 203,
+    //         "sku3Id": 301,
+    //         "skuId": 6934,
+    //         "stock": 10
+    //       },
+    //       {
+    //         "pic": "../../../img/3.jpg",
+    //         "price": "179",
+    //         "rebatePrice": "3",
+    //         "sku1Id": 199,
+    //         "sku2Id": 201,
+    //         "sku3Id": 301,
+    //         "skuId": 6935,
+    //         "stock": 10
+    //       },
+    //       {
+    //         "pic": "../../../img/3.jpg",
+    //         "price": "180",
+    //         "rebatePrice": "3",
+    //         "sku1Id": 199,
+    //         "sku2Id": 201,
+    //         "sku3Id": 303,
+    //         "skuId": 6935,
+    //         "stock": 10
+    //       },
+    //       {
+    //         "pic": "../../../img/3.jpg",
+    //         "price": "179",
+    //         "rebatePrice": "3",
+    //         "sku1Id": 198,
+    //         "sku2Id": 201,
+    //         "sku3Id": 303,
+    //         "skuId": 6935,
+    //         "stock": 10
+    //       }
+    //     ]
+    //   },
+    //   "message": "ok"
+    // }
+    // res.data.mallGoodsSkuResps.forEach(function(e){
+    //     e.selIte = ''
+    //   e.itemList.forEach(function(e){e.changSel=1})
+    //     // console.log("e",e)
+    // })
+    // this.setData({
+    //   mallGoodsSkuResps: res.data.mallGoodsSkuResps,
+    //   skuListResps: res.data.skuListResps
+    // })
   },
 
   /**

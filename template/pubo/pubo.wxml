@@ -1,10 +1,10 @@
 <template name="pubo">
-  <view class="pubo" bindtap='toDetail'>
-     <image src="{{img}}" class="puboimg"></image>
+  <view class="pubo" bindtap='toDetail' data-gid="{{goodsId}}">
+     <view class="puboimgBG"><image src="{{goodsPic}}" class="puboimg"></image></view>
      <view class="puboBot">
-        <view class="pubo-tit">{{name}}</view>
-        <view class="pubo-min">¥{{price}} <image src="../../img/i-plus.png"></image></view>
-        <view class="pubo-bot">返现{{res}}元</view>
+        <view class="pubo-tit">{{goodsName}}</view>
+        <view class="pubo-min">¥{{plusPrice}} <image src="../../img/i-plus.png"></image></view>
+        <view class="pubo-bot">返现{{rebateAmount}}元</view>
      </view>
   </view>
 </template>  
