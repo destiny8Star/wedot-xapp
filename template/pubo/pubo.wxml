@@ -3,7 +3,7 @@
      <view class="puboimgBG"><image src="{{goodsPic}}" class="puboimg"></image></view>
      <view class="puboBot">
         <view class="pubo-tit">{{goodsName}}</view>
-        <view class="pubo-min">¥{{plusPrice}} <image src="../../img/i-plus.png"></image></view>
+        <view class="pubo-min">¥{{plusPrice}} <image src="/img/i-plus.png"></image></view>
         <view class="pubo-bot">返现{{rebateAmount}}元</view>
      </view>
   </view>

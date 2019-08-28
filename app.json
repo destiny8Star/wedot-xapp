@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/index/search/search",
     "pages/cart/cart",
     "pages/mall/mall",
     "pages/mine/mine",
@@ -13,11 +14,14 @@
     "pages/mine/increase/increase",
     "pages/mine/selAdd/selAdd",
     "pages/mine/zero/zero",
-    "pages/bindPhone/bindPhone"
+    "pages/bindPhone/bindPhone",
+    "pages/index/searPage/searPage",
+    "pages/index/anchor/anchor",
+    "pages/index/gType/gType"
   ],
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
   "window": {

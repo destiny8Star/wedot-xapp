@@ -54,12 +54,40 @@
   align-items: center;
 
 }
-.c-goodsImg{
+.c-goodsImgBox{
   width:160rpx;
   height:180rpx;
   background:rgba(216,216,216,1);
   border-radius:4rpx;
-  margin:0 20rpx 0 32rpx
+  margin:0 20rpx 0 32rpx;
+  position: relative;
+  overflow: hidden
+}
+.c-goodsImg{
+  width:160rpx;
+  height:180rpx;
+  border-radius:4rpx;
+}
+.c-goodsImgmask{
+  width:160rpx;
+  height:180rpx;
+  background: rgba(216,216,216,0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1
+}
+.c-goodsImgmaskWoc{
+  width: 100%;
+  height: 38rpx;
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 38rpx;
+  position: absolute;
+  left: 0;
+  bottom:0
 }
 .c-Gwoc{
   flex: 1;
@@ -103,6 +131,11 @@
 }
 .c-Gwoc-botR{
   align-items: center;
+}
+.c-Gwoc-botRsq{
+  font-size: 24rpx;
+  color: #3E3E4D;
+  font-weight: bold
 }
 .c-Gwoc-botR image{
   width: 48rpx;
@@ -161,4 +194,16 @@
   line-height: 80rpx;
   color: #fff;
   font-size: 32rpx
+}
+.lack{
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  color: #999999;
+  margin-top: 50%
+}
+.lack-img{
+  width: 100%;
+  height: 195rpx;
+  margin-bottom: 20rpx
 }

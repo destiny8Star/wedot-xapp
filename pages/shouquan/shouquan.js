@@ -32,6 +32,7 @@ Page({
          }
       })
       .catch(rej => {
+        Tips.loaded()
         wx.clearStorageSync('auth')
         Tips.alert('授权失败!')})
   },

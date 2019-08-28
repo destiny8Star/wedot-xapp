@@ -3,32 +3,35 @@
 <view class="coTop">
     <!-- 地址 -->
    <view class="coTop-add flex">
-      <view class="coTop-addL">
+      <!-- <view class="coTop-addL">
          <view class="coTop-addL-top flex">
             <image src='../../../img/co-add.png'></image>
-            <view class="coTop-addL-topM">小胖子</view>
-            <view class="coTop-addL-topP">15874589587</view>
+            <view class="coTop-addL-topM">{{defAdd.realName}}</view>
+            <view class="coTop-addL-topP">{{defAdd.mobile}}</view>
          </view>
-         <view class="coTop-addL-bot">浙江省杭州市滨江区天津港卡号和饭卡上飞机卡8号6单元</view>
-      </view>
+         <view class="coTop-addL-bot">{{defAdd.province+defAdd.city+defAdd.area+defAdd.detailArea}}</view>
+      </view> -->
+      
+      <!-- //缺少的 -->
+
       <view class="coTop-addR"><image src="../../../img/co-toR.png"></image></view>
    </view>
 <!-- 商品 -->
-     <view class="orList" wx:for='1,'>
+     <view class="orList" wx:for='{{infos.storeCartList}}' wx:key='{{index}}'>
    <!-- 顶部信息 -->
       <view class="orList-top flex">
          <image src="../../../img/c-st.png"></image>
-         江西苹果店
+         {{item.storeName}}
       </view>
       <!-- //中间信息 -->
-      <view class="orList-con flex" wx:for='1,'>
-         <image src="../../../img/3.jpg" class="orList-img"></image>
+      <view class="orList-con flex" wx:for='{{item.storeCartItemList}}' wx:for-item='goods' wx:for-index='gind' wx:key='{{gind}}'>
+         <image src="{{goods.goodsUrl}}" class="orList-img"></image>
          <view class="orList-conR">
-            <view class="orList-conR-tit">江西2苹果8斤江西2苹果8斤江西2苹果8斤江西2苹果8斤江西2苹果8斤杀掉对方</view>
-            <view class="orList-conR-sku">灰色；XL；加绒加厚</view>
+            <view class="orList-conR-tit">{{goods.goodsName}}</view>
+            <view class="orList-conR-sku">{{goods.specification}}</view>
             <view class="orList-conR-num flex_be">
-               <view class="orList-conR-numP flex"><view class="orList-conR-numPS">￥</view>178</view>
-               <view class="orList-conR-numN">X78</view>
+               <view class="orList-conR-numP flex"><view class="orList-conR-numPS">￥</view>{{goods.price}}</view>
+               <view class="orList-conR-numN">X{{goods.num}}</view>
             </view>
          </view>
       </view>
@@ -37,27 +40,27 @@
         <view class="or-line"></view>
       <!-- 地下信息 -->
         <view class="orList-bot flex_be">
-         <view class="orList-botTit flex">共计 <view style="color:#FF1515">1</view>件商品</view>
-         <view class="orList-botcon flex">小计:￥<view style="font-size:32rpx">145</view></view>
+         <view class="orList-botTit flex">共计 <view style="color:#FF1515">{{item.num}}</view>件商品</view>
+         <view class="orList-botcon flex">小计:￥<view style="font-size:32rpx">{{item.price}}</view></view>
       </view>
       <view class="orList-bot flex_be">
          <view class="orList-botTit">快递运费</view>
-         <view class="orList-botcon flex">￥<view style="font-size:32rpx">5</view></view>
+         <view class="orList-botcon flex">￥<view style="font-size:32rpx">{{item.freight}}</view></view>
       </view>
        <view class="orList-bot flex_be">
          <view class="orList-botTit">余额返利</view>
-         <view class="orList-botcon2 flex">￥<view class="orList-botconPri">155</view></view>
+         <view class="orList-botcon2 flex">￥<view class="orList-botconPri">{{item.rebatePrice}}</view></view>
       </view>
    </view> 
 </view>
 <!-- 底部内容 -->
 <view class="coBot">
-   <view class="coBot-tip">用户购物后余额返利返到账户余额（返利：¥30.00）</view>
+   <view class="coBot-tip">用户购物后余额返利返到账户余额（返利：¥{{infos.rebatePrice}}）</view>
    <view class="coBot-bots flex_be">
        <view class="coBot-botsL flex">
           <view class="coBot-botsLtit">合计：</view>
-          <view class="coBot-botsLPri flex">￥<view style="font-size:48rpx">144</view></view>
+          <view class="coBot-botsLPri flex">￥<view style="font-size:48rpx">{{infos.totalPrice}}</view></view>
        </view>
-       <view class="coBot-botsR">去付款</view>
+       <view class="coBot-botsR" bindtap="toPay">去付款</view>
    </view>
 </view>

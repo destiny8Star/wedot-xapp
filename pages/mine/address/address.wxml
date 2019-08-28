@@ -1,55 +1,35 @@
 <!--pages/mine/address/address.wxml-->
 <!-- 地址box -->
-<view class="ad-box">
-   <view class="ad-item">
+<view class="ad-box" wx:if='{{datas.length!=0}}'>
+   <view class="ad-item" wx:for='{{datas}}' wx:key='{{index}}'>
       <view class="ad-itemTop flex">
-         <view class="ad-itemTop-name">卡拉卡</view>
-         <view class="ad-itemTop-phone">15874587458</view>
+         <view class="ad-itemTop-name">{{item.realName}}</view>
+         <view class="ad-itemTop-phone">{{item.mobile}}</view>
       </view>
-      <view class="ad-itemMin">浙江省杭州市萧山区民和路58号保亿中心A座1702室</view>
+      <view class="ad-itemMin">{{item.province+item.city+item.area+item.detailArea}}</view>
       <view class="ad-itemBot flex_be">
-          <view class="ad-itemBot-l flex">
-               <!-- <icon type="success" size="18" color='#FC2C54'></icon> -->
-               <view class="ad-itemBot-licon"></view>
-               <view class="ad-itemBot-ldf">设为默认</view>
+          <view class="ad-itemBot-l flex" data-index="{{index}}" bindtap="setDef">
+               <icon type="success" size="18" color='#FC2C54' hidden="{{item.isDefault==1}}"></icon>
+               <view class="ad-itemBot-licon" hidden="{{item.isDefault==0}}"></view>
+               <view class="ad-itemBot-ldf {{item.isDefault==0?'ad-itemBot-lmr':''}}">设为默认</view>
           </view>
           <view class="ad-itemBot-r flex">
-              <view class="ad-itemBot-rbj flex">
-                 <image src="../../../img/ad-bj.png"></image>
+              <view class="ad-itemBot-rbj flex" bindtap="toAdd" data-index="{{index}}">
+                 <image src="../../../img/ad-bj.png" ></image>
                  编辑
               </view>
-               <view class="ad-itemBot-rbj ad-itemBot-rdel flex">
+               <view class="ad-itemBot-rbj ad-itemBot-rdel flex" bindtap="delAdd" data-index="{{index}}">
                  <image src="../../../img/ad-del.png"></image>
                  删除
               </view>
           </view>
       </view>
    </view>
-
-
-<view class="ad-item">
-      <view class="ad-itemTop flex">
-         <view class="ad-itemTop-name">卡拉卡</view>
-         <view class="ad-itemTop-phone">15874587458</view>
-      </view>
-      <view class="ad-itemMin">浙江省杭州市萧山区民和路58号保亿中心A座1702室</view>
-      <view class="ad-itemBot flex_be">
-          <view class="ad-itemBot-l flex">
-               <icon type="success" size="18" color='#FC2C54'></icon>
-               <view class="ad-itemBot-ldf ad-itemBot-lmr">已设为默认</view>
-          </view>
-          <view class="ad-itemBot-r flex">
-              <view class="ad-itemBot-rbj flex">
-                 <image src="../../../img/ad-bj.png"></image>
-                 编辑
-              </view>
-               <view class="ad-itemBot-rbj ad-itemBot-rdel flex">
-                 <image src="../../../img/ad-del.png"></image>
-                 删除
-              </view>
-          </view>
-      </view>
-   </view>
+</view>
+<!-- //缺少页 -->
+<view class="lack" wx:else>
+     <image class="lack-img" src="../../../img/address-no.png"></image>
+     您还没有收货地址哦！
 </view>
 <!-- 添加地址按钮 -->
 <view class="adBot-btn flex" bindtap="toAdd">

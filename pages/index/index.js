@@ -10,7 +10,6 @@ Page({
       'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
       'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
     ],
-    infos: ["5月11号微点新零售蓝熬枯受淡飞机文熬枯受淡飞机文","卡萨丁九分裤","熬枯受淡飞机文"],
     goods:[
       {
         img: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
@@ -19,37 +18,10 @@ Page({
         res:"1.2",
         id:"1"
       },
-      {
-        img: 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
-        name: "一号adfas一号商品一号商品",
-        price: "192",
-        res: "1.2",
-        id: "2"
-      },
-      {
-        img: 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
-        name: "商品3号商品3号商品3号商品3号商品3号商品3号商品3号",
-        price: "5632",
-        res: "0.22",
-        id: "3"
-      },
-      {
-        img: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-        name: "商品4号商品4号商品4号商品4号商品4号商品4号商品4号",
-        price: "12342",
-        res: "0.58",
-        id: "4"
-      },
-      {
-        img: 'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640',
-        name: "商品5号商品5号商品5号商品5号商品5号商品5号商品5号商品5号",
-        price: "1922",
-        res: "2",
-        id: "5"
-      },
+  
     ]
   },
-  //选择城市
+  //选择城市  http://test.dianjishenghuo.cn/#/invite
   selCity(){
     wx.getSetting({
       success(res) {
@@ -73,23 +45,53 @@ Page({
               //    }
               
               //  })
-
              }
            })
         }
      
       }
     })
-    // wx.chooseLocation(function(res){
-    //   console.log("res")
-    // })
+  
   },
-  //去详情页
+  //去商品详情页
   toDetail(e){
     let gid=e.currentTarget.dataset.gid
     wx.navigateTo({
       url: 'detail/detail?gid='+gid,
     })
+  },
+  //去搜索
+  toSearch(){
+    wx.navigateTo({
+      url: 'search/search',
+    })
+  },
+  //去各种页面
+  toAll(e){
+  // 0无跳转 1是商品分类id 2商品货号（后台查询存储商品id） 3.H5链接 4.活动标签id 5店铺 6邀友 7商铺分类
+    let targetWay=e.currentTarget.dataset.tarway
+    let targetId=e.currentTarget.dataset.tarid
+    let link = e.currentTarget.dataset.link
+    switch (targetWay){
+      case 1: wx.navigateTo({
+        url: '/pages/index/gType/gType?sid='+targetId,
+      })
+      break;
+      case 2: wx.navigateTo({
+        url: '/pages/index/detail/detail?gid=' + targetId,
+      })
+      break;
+      case 3: wx.navigateTo({
+        url: '/pages/index/anchor/anchor?link=' + link,
+      })
+       break;
+      case 6: wx.navigateTo({
+        url: '/pages/index/anchor/anchor?link=' + link,
+      })
+      break;
+    }
+   
+
   },
   onLoad: function() {
     let  openId=wx.getStorageSync("auth").openId;

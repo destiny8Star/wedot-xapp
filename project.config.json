@@ -18,7 +18,8 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.6",
@@ -48,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 12,
 			"list": [
 				{
 					"id": -1,
@@ -124,6 +125,20 @@
 					"id": -1,
 					"name": "绑定手机号",
 					"pathName": "pages/bindPhone/bindPhone",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/index/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索详情",
+					"pathName": "pages/index/searPage/searPage",
 					"scene": null
 				}
 			]

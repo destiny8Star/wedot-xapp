@@ -1,0 +1,23 @@
+<!--pages/index/gType/gType.wxml-->
+<import src="../../template/pubo/pubo.wxml"/>
+<import src="../../template/pubt/pubo.wxml"/>
+<!-- 商品列表 -->
+<view class="ilistbox" wx:if='{{goods.length!=0}}'>
+    <view class="listbox flex">
+       <view class="listLeft">
+          <block wx:for='{{goods}}' wx:key="{{index}}">
+             <template is='pubo' wx:if="{{index % 2==0}}" data="{{...item}}" ></template>
+          </block>
+       </view>
+       <view class="listRight">
+          <block wx:for='{{goods}}' wx:key="{{item.id}}">
+            <template is='pubt' wx:if="{{index % 2==1}}" data="{{...item}}" ></template>
+          </block>  
+       </view>
+    </view>
+</view>
+<!-- 缺省页 -->
+<view class="lack" wx:else>
+     <image class="lack-img" src="../../../img/tub.png"></image>
+     空空如也，什么都没有哦~
+</view>

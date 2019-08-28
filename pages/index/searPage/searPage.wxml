@@ -1,0 +1,44 @@
+<!--pages/index/searPage/searPage.wxml-->
+<!--index.wxml-->
+<import src="../../../template/pubo/pubo.wxml"/>
+<import src="../../../template/pubt/pubo.wxml"/>
+<!-- 顶部 -->
+<view class="sp-top">
+    <view class="searchbox flex">
+       <image src="../../../img/all-left2.png" class="left" bindtap="toIndex"></image>
+       <view class="searchinput" bindtap="toLast">{{cont}}</view>
+    </view>
+    <!-- 顶部tab -->
+    <view class="sp-tab flex_ar">
+        <view class="sp-tabItem flex {{selT==1?'selT':''}}" data-sid="1" bindtap="selTab">综合</view>
+        <view class="sp-tabItem flex {{selT==2?'selT':''}}" bindtap="selTabP">
+          价格 
+          <image src='{{selPI==0?"../../../img/sp-no.png":selPI==1?"../../../img/sp-top.png":"../../../img/sp-bot.png"}}' class="ap-tabItem-icon" ></image>
+        </view>
+        <view class="sp-tabItem flex {{selT==3?'selT':''}}"  bindtap="selTabS">
+            销量
+            <image src='{{selSI==0?"../../../img/sp-no.png":selSI==1?"../../../img/sp-top.png":"../../../img/sp-bot.png"}}' class="ap-tabItem-icon" ></image>
+        </view>
+        <view class="sp-tabItem flex {{selT==4?'selT':''}}" data-sid="4" bindtap="selTab">新品</view>
+    </view>
+</view>
+<!-- //搜索的内容 -->
+<view class="ilistbox" wx:if='{{goods.length!=0}}'>
+    <view class="listbox flex">
+       <view class="listLeft">
+          <block wx:for='{{goods}}' wx:key="{{index}}">
+             <template is='pubo' wx:if="{{index % 2==0}}" data="{{...item}}" ></template>
+          </block>
+       </view>
+       <view class="listRight">
+          <block wx:for='{{goods}}' wx:key="{{item.id}}">
+            <template is='pubt' wx:if="{{index % 2==1}}" data="{{...item}}" ></template>
+          </block>  
+       </view>
+    </view>
+</view>
+<!-- 缺省页 -->
+<view class="lack" wx:else>
+     <image class="lack-img" src="../../../img/tub.png"></image>
+     空空如也，什么都没有哦~
+</view>

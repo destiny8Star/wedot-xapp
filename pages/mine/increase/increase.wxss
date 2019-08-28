@@ -39,7 +39,7 @@
   width: 628rpx;
   height: 88rpx;
   background: #FC2C54;
-  margin: 440rpx auto;
+  margin: 440rpx auto 0;
   border-radius: 10rpx;
   text-align: center;
   line-height: 88rpx;

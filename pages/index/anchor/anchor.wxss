@@ -1,0 +1,4 @@
+/* pages/index/anchor/anchor.wxss */
+view{
+  margin-top: -300rpx
+}

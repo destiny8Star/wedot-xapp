@@ -27,4 +27,4 @@
     </scroll-view>
 </view>
 
-<view class="seBtn" hidden='{{discountT=="请选择"}}'>确定</view>
+<view class="seBtn" hidden='{{discountT=="请选择"}}' bindtap="saveDis">确定</view>

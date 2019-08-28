@@ -93,6 +93,17 @@ selD(e){
   //     console.log("rej", rej)
   //   })
 },
+//保存地址
+  saveDis(){
+    let proT=this.data.proT
+    let cityT=this.data.cityT
+    let discountT=this.data.discountT
+    wx.setStorageSync('discount', proT + cityT + discountT)
+    wx.setStorageSync('discount2', [proT,cityT,discountT])
+    wx.navigateBack({
+      delta:1
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

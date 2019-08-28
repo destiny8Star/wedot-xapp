@@ -1,23 +1,25 @@
 <!--pages/mine/increase/increase.wxml-->
-<view class="inTop">
-   <view class="inItem flex">
-       <view class="inItem-tit">收件人</view>
-       <input class="inItem-name" placeholder="请填写收件人" placeholder-style="color:#909090"></input>   
-   </view>
+<form bindsubmit="commit">
+  <view class="inTop">
     <view class="inItem flex">
-       <view class="inItem-tit">手机号</view>
-       <input class="inItem-name" placeholder="请输入联系号码" placeholder-style="color:#909090"></input>   
-   </view>
-     <view class="inItem flex_be">
-       <view class="inItem-tit">收货地址</view>
-        <view class="inItem-btn flex" bindtap="toSel">
-            <view class="inItem-ss ">选择省市</view> 
-            <image src="../../../img/in-dow.png"></image>
-         </view>
-   </view>
-   <view class="inItem flex">
-       <textarea  auto-height placeholder="请输入详细地址" maxlength="50" />   
-   </view>
-</view>
-<!-- 按钮 -->
-<view class="inBtn" >保存地址</view>
+        <view class="inItem-tit">收件人</view>
+        <input class="inItem-name" placeholder="请填写收件人" name='name'placeholder-style="color:#909090" value='{{item.realName}}'></input>   
+    </view>
+      <view class="inItem flex">
+        <view class="inItem-tit">手机号</view>
+        <input class="inItem-name" placeholder="请输入联系号码"maxlength='11' type='number'name='mobile'value='{{item.mobile}}' placeholder-style="color:#909090"></input>   
+    </view>
+      <view class="inItem flex_be">
+        <view class="inItem-tit">收货地址</view>
+          <view class="inItem-btn flex" bindtap="toSel">
+              <view class="inItem-ss ">{{discount}}</view> 
+              <image src="../../../img/in-dow.png"></image>
+          </view>
+    </view>
+    <view class="inItem flex">
+        <textarea  auto-height placeholder="请输入详细地址"name='detailArea' value="{{item.detailArea}}" maxlength="50" />   
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <button form-type="submit" class="inBtn">保存地址</button>
+</form>

@@ -21,9 +21,9 @@ export default class Http {
         data = {};
       }
       if (wx.getStorageSync('auth')) {
-        // let auth = wx.getStorageSync('auth');
+        let auth = wx.getStorageSync('auth');
         // data.token = auth.token;
-        // data.openid=auth.openid.openid;
+        data.openId=auth.openId;
         data.timestamp = Math.round(new Date().getTime() / 1000);
         data.deviceType='3'
       }

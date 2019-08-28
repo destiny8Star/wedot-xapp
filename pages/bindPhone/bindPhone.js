@@ -10,6 +10,7 @@ Page({
     getChange:true,//防止重复点击
     phone:"",
     getText:"获取验证码",//验证码name
+    code:'',  //验证码
   },
   // 手机号码
   blurPhonel: function (e) {
@@ -20,16 +21,21 @@ Page({
       phone: phone
     })
   },
+  blurCode(e){
+    var code = e.detail.value;
+    console.log('验证码', code)
+    this.setData({
+      code: code
+    })
+  },
   //获取验证码
   getYZM: function () {
     var getChange = this.data.getChange
     var n = 59;
     var that = this;
     var phone = this.data.phone;
-    Tips.loading()
     if (!(/^1\d{10}$/.test(phone))) {
-      Tips.loaded()
-      Tips.alert('手机号有误')
+      Tips.alert('请输入正确手机号')
     } else {
       if (getChange) {
         this.setData({
@@ -50,6 +56,7 @@ Page({
             clearInterval(time);
           }
         }, 1000);
+        Tips.loading()
         app.auth.getIndCode(phone)
           .then(res => {
             Tips.loaded()
@@ -58,9 +65,44 @@ Page({
               Tips.toast('发送成功')
             }
           })
+          .catch(rej=>{
+            Tips.alert("网络异常")
+          })
 
       }
     }
+  },
+  //绑定手机号
+  bindPhone(){
+     let phone=this.data.phone;
+     let code=this.data.code;
+    if (!(/^1\d{10}$/.test(phone))) {Tips.alert("请输入正确手机号") ;return}
+    if(!code){Tips.alert("请输入验证码");return}
+    Tips.loading()
+    app.auth.bindP(phone,code)
+    .then(res=>{
+      Tips.loaded()
+      if(res.code==200){
+        let auth=wx.getStorageSync('auth')
+        //重新获取并保存个人信息
+        app.auth.syncUserInfo(auth)
+        .then(res=>{
+          console.log("保存结果",res)
+          wx.navigateBack({
+            delta:1
+          })
+        })
+        .catch(rej=>{
+          Tips.alert("网络异常")
+        })        
+      }
+      console.log("绑定结果",res)
+    })
+    .catch(rej=>{
+      Tips.loaded()
+      console.log("失败",rej)
+      Tips.alert("网络异常")
+    })
   },
   /**
    * 生命周期函数--监听页面加载

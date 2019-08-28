@@ -42,6 +42,9 @@ page{
   width: 210rpx;
   text-align: center
 }
+.btn_yzmF{
+  color: #909090
+}
 .btn_bind{
   width: 642rpx;
   height: 92rpx;

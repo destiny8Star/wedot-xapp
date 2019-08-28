@@ -60,8 +60,15 @@ export default class AuthApi extends BaseApi {
 
   //获取验证码
   getIndCode(phone) {
-    return this.post('/api/third/smsCode', {
-      phone: phone
+    return this.post('/api/smallPro/Login/smsCode', {
+      mobile: phone
+    })
+  }
+  //绑定手机号
+  bindP(phone,code){
+    return this.post('/api/smallPro/Login/phone/bind',{
+      phone:phone,
+      mobileAuthCode:code
     })
   }
 //获取首页信息
@@ -116,34 +123,49 @@ delCar(sid,tid){
     tradeCartItemIds:tid,
   })
 }
-  //实名认证上传图片
-  // sendImg(type,arr) {
-  //   let auth = wx.getStorageSync('auth');
-  //  let token = auth.token;
-  //   let openid = auth.openid.openid
-  //   return new Promise((resole,rej)=>{
-  //     wx.uploadFile({
-  //       url:  'https://farm.isoft.mobi/api/papersUpload',
-  //       filePath: arr[0],
-  //       name: 'files',
-  //       header: {
-  //         "Content-Type": "application/x-www-form-urlencoded"
-  //       },
-  //       method: "POST",
-  //       formData: {
-  //         file_type:type,
-  //         token: token,
-  //         openid:openid
-  //       },
-  //       success:function(res){
-  //           resole(res)
-  //       },
-  //       fail:function(res){
-  //              rej(res)
-  //       }
-  //     })
-  //   })
-  // }
-
+//搜索
+  search(goodsName, searchType,sort,cursor){
+  return this.post('/api/smallPro/Login/page',{
+    goodsName: goodsName,
+    searchType: searchType,
+    sort: sort,
+    cursor: cursor,
+    size:10
+  })
+}
+//提交订单
+  subOr(traId){
+   return this.post('/api/smallPro/Login/submitOrder',{
+     tradeCartItemIds:traId
+   })
+ }
+ //获取默认地址
+ getDefAdd(){
+   return this.post('/api/smallPro/Login/addresses/default')
+ }
+ //去付款生成订单
+  createOrd(cartItemIds, storeIds, addressId){
+    return this.post('/api/smallPro/Login/cartBuy',{
+     cartItemIds: cartItemIds,
+     storeIds: storeIds,
+     addressId: addressId
+   })
+ }
+//获取所有地址
+getAllAdd(){
+  return this.post('/api/smallPro/Login/addresses/account')
+}
+//修改地址
+  updAdd(id, name, mobile, detailArea,discount2){
+    return this.post('/api/smallPro/Login/address/update',{
+      commodityAddressId:id,
+      realName:name,
+      mobile:mobile,
+      detailArea: detailArea,
+      province: discount2[0],
+      city: discount2[1],
+      area: discount2[2]
+    })
+}
 
 }

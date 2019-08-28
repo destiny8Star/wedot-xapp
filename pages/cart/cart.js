@@ -14,10 +14,16 @@ Page({
     openId:'',
     page:1,  //页码
     total:0, //总金额
-    top:true,
+    tops:true, // true为编辑  false 为完成
     toNum:0,  //结算商品的数量
   },
-
+//去详情页
+  toDetail(e){
+    let gid = e.currentTarget.dataset.gid
+    wx.navigateTo({
+      url: '/pages/index/detail/detail?gid=' + gid,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -32,9 +38,9 @@ Page({
   },
   //编辑
   edite(){
-    let top=this.data.top
+    let tops=this.data.tops
     this.setData({
-      top:!top
+      tops:!tops
     })
   },
   //删除
@@ -50,6 +56,8 @@ Page({
       })
     })
     if(tid=='') return
+
+
     console.log("获取tid",tid,sid)
     Tips.loading()
     app.auth.delCar(sid,tid)
@@ -69,6 +77,32 @@ Page({
       total:0,
       toNum:0
     })
+  },
+  //qu结算
+  subOr(){
+    let carts=this.data.carts;
+    let traId='';
+    let storeId='';
+    for (let i = 0; i < carts.length; i++) {
+      let goods = carts[i].tradeCartItemListDTOS
+      if (carts[i].selected) storeId += carts[i].storeId+','
+      for (let j = 0; j < goods.length; j++) {
+        if (goods[j].status == 1) {   //判断正常商品
+          let selected = goods[j].selected
+          if (selected) {
+            traId += goods[j].tradeCartItemId + ','
+          }
+        }
+      }
+    }
+   if(!traId) return 
+    wx.navigateTo({
+      url: '/pages/cart/commitOr/commitOr?traId='+traId+'&&storeId='+storeId,
+    })
+
+
+   
+    console.log("xuanze",traId,storeId)
   },
   //数量修改
   handlerNum(e){
@@ -111,10 +145,12 @@ Page({
     for (let i = 0; i < carts.length; i++) {
       let goods = carts[i].tradeCartItemListDTOS
       for (let j = 0; j < goods.length; j++) {
-        let selected = goods[j].selected
-        if (selected) {
-          total += goods[j].num * goods[j].price;
-          toNum++
+        if (goods[j].status==1){
+            let selected = goods[j].selected
+            if (selected) {
+              total += goods[j].num * goods[j].price;
+              toNum++
+            }
         }
       }
     }
@@ -134,17 +170,30 @@ Page({
   //全选
   handlerSa(){
     // 环境中目前已选状态
+    let tops=this.data.tops
     var allSel = this.data.allSel;
     var carts = this.data.carts;
     // 取反操作
     allSel = !allSel;
     // 遍历
-    for (var i = 0; i < carts.length; i++) {
-      carts[i].selected = allSel;
-      carts[i].tradeCartItemListDTOS.forEach(function (e) {
-        e.selected = carts[i].selected
-      })
+    if(tops){
+      for (var i = 0; i < carts.length; i++) {
+        carts[i].selected = allSel;
+        carts[i].tradeCartItemListDTOS.forEach(function (e) {
+          if(e.status==1){
+            e.selected = carts[i].selected
+          }
+        })
+      }
+    }else{
+      for (var i = 0; i < carts.length; i++) {
+        carts[i].selected = allSel;
+        carts[i].tradeCartItemListDTOS.forEach(function (e) {
+          e.selected = carts[i].selected
+        })
+      }
     }
+    
     this.sum()
     this.setData({
       allSel: allSel,
@@ -154,16 +203,25 @@ Page({
   //店铺选中
   handlerSs(e){
     let index = e.currentTarget.dataset.index;
+    let tops=this.data.tops
     //原始的icon状态
     let selected = this.data.carts[index].selected;
     let carts = this.data.carts;
     console.log('是否被选中', selected)
-    // let select_status = (!selected) ? '1' : '0';
     // 对勾选状态取反
     carts[index].selected = !selected;
-    carts[index].tradeCartItemListDTOS.forEach(function (e) {
-      e.selected = carts[index].selected
-    })
+    if(tops){
+      carts[index].tradeCartItemListDTOS.forEach(function (e) {
+        if(e.status==1){
+          e.selected = carts[index].selected
+        }
+      })
+    }else{
+      carts[index].tradeCartItemListDTOS.forEach(function (e) {
+          e.selected = carts[index].selected
+      })
+    }
+   
     if (carts.every(this.allSel)) {
       this.setData({
         allSel: true,
@@ -183,31 +241,56 @@ Page({
     let carts = this.data.carts;
     var gid = e.currentTarget.dataset.gind;  //当前店铺的商品index
     let mid = e.currentTarget.dataset.sind;   //店铺的index
-    console.log('湖区id', mid, gid)
+    let tops=this.data.tops
+    console.log('湖区id', mid, gid,tops)
     //原始的icon状态
     var selected = carts[mid].tradeCartItemListDTOS[gid].selected;
     // 对勾选状态取反
     carts[mid].tradeCartItemListDTOS[gid].selected = !selected;
-
-    if (carts[mid].tradeCartItemListDTOS.every(this.allSel)) {
-
-      carts[mid].selected = true
-      if (carts.every(this.allSel)) {
-        this.setData({
-          allSel: true,
-        })
+  
+    if(tops){
+      let nomals = carts[mid].tradeCartItemListDTOS.filter(function(e){
+            return e.status==1
+      })
+      if (nomals.every(this.allSel)) {
+        carts[mid].selected = true
+        if (carts.every(this.allSel)) {
+          this.setData({
+            allSel: true,
+          })
+        } else {
+          this.setData({
+            allSel: false,
+          })
+        }
       } else {
+        carts[mid].selected = false
+
         this.setData({
           allSel: false,
         })
       }
-    } else {
-      carts[mid].selected = false
-  
+    }else{
+      if (carts[mid].tradeCartItemListDTOS.every(this.allSel)) {
+        carts[mid].selected = true
+        if (carts.every(this.allSel)) {
+          this.setData({
+            allSel: true,
+          })
+        } else {
+          this.setData({
+            allSel: false,
+          })
+        }
+      } else {
+        carts[mid].selected = false
+
         this.setData({
           allSel: false,
         })
+      }
     }
+ 
     this.setData({
       carts:carts
     })
@@ -218,6 +301,13 @@ Page({
    */
   onShow: function () {
     let that=this
+    let  isP=wx.getStorageSync("user").isPhone
+    if(isP){
+      wx.navigateTo({
+        url: '/pages/bindPhone/bindPhone',
+      })
+      return
+    }
     let openId = wx.getStorageSync('auth').openId
     let page =1
     Tips.loading()
@@ -234,7 +324,10 @@ Page({
         })
 
         that.setData({
-          carts:res.data
+          carts:res.data,
+          allSel:false,
+          total: 0, //总金额
+          toNum: 0,  //结算商品的数量
         })
       })
       .catch(rej => {

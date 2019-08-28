@@ -3,11 +3,11 @@
 <import src="../../template/pubt/pubo.wxml"/>
 <!-- 悬浮顶部 -->
 <view class="ifloat flex">
-   <view class="ifloatL flex" bindtap="selCity">
+   <!-- <view class="ifloatL flex" bindtap="selCity">
      <view class="ifloatL-woc">杭州</view>
      <image src="../../img/i-dow.png"></image>
-   </view>
-   <view class="ifloatInp flex">
+   </view> -->
+   <view class="ifloatInp flex" bindtap="toSearch">
       <image src="../../img/i-ss.png"></image>
       搜索商品
    </view>
@@ -19,17 +19,17 @@
     <swiper autoplay="false" interval="3000" duration="500" circular='true' easing-function="easeInOutCubic" class='ibanner'>
         <block wx:for="{{homeInfo.banners}}" wx:key="ind">
           <swiper-item>
-            <image src="{{item.detailPic}}" class="slide-image" width="355" height="150"/>
+            <image src="{{item.detailPic}}" class="slide-image" width="355" height="150" bindtap="toAll" data-tarid="{{item.targetId}}" data-tarway="{{item.targetWay}}" data-link="{{item.linkUrl}}"/>
           </swiper-item>
         </block>
     </swiper>
 </view>
 <!-- banner下面 -->
-<view class='iad'></view>
+<view class='iad' wx:if='{{homeInfo.banner1.detailPic}}'  bindtap="toAll" data-tarid="{{homeInfo.banner1.targetId}}" data-tarway="{{homeInfo.banner1.targetWay}}" data-link="{{homeInfo.banner1.linkUrl}}"><image src="{{homeInfo.banner1.detailPic}}"></image></view>
 <!-- tab -->
 <view class='itab flex_ar'>
     <block wx:for='{{homeInfo.icon1}}' wx:key='item.id'>
-       <view class='itab-item' hidden='{{index>4}}'>
+       <view class='itab-item' hidden='{{index>4}}'  bindtap="toAll" data-tarid="{{item.targetId}}" data-tarway="{{item.targetWay}}" data-link="{{item.linkUrl}}">
           <image src='{{item.detailPic}}'></image>
           <view class='itab-p'>{{item.mainTitle}}</view>
        </view>
@@ -47,10 +47,10 @@
     </swiper>
 </view>
 <!-- 中间广告 -->
-<view class="iban"><image src="{{homeInfo.banner2.detailPic}}"></image></view>
+<view class="iban" wx:if='{{homeInfo.banner2.detailPic}}'  bindtap="toAll" data-tarid="{{homeInfo.banner2.targetId}}" data-tarway="{{homeInfo.banner2.targetWay}}" data-link="{{homeInfo.banner2.linkUrl}}"><image src="{{homeInfo.banner2.detailPic}}"></image></view>
 <view class="ibans flex">
    <block wx:for="{{homeInfo.icon2 }}" wx:key="item.id">
-       <view class="ibans-item"><image src="{{item.detailPic}}"></image></view>
+       <view class="ibans-item"><image src="{{item.detailPic}}"  bindtap="toAll" data-tarid="{{item.targetId}}" data-tarway="{{item.targetWay}}" data-link="{{item.linkUrl}}"></image></view>
    </block>
 </view>
 <!-- 商品列表 -->
@@ -64,12 +64,12 @@
     <view class="listbox flex">
        <view class="listLeft">
           <block wx:for='{{goods}}' wx:key="{{index}}">
-             <template is='pubt' wx:if="{{index % 2==1}}" data="{{...item}}" ></template>
+             <template is='pubo' wx:if="{{index % 2==0}}" data="{{...item}}" ></template>
           </block>
        </view>
        <view class="listRight">
           <block wx:for='{{goods}}' wx:key="{{item.id}}">
-            <template is='pubo' wx:if="{{index % 2==0}}" data="{{...item}}" ></template>
+            <template is='pubt' wx:if="{{index % 2==1}}" data="{{...item}}" ></template>
           </block>  
        </view>
     </view>

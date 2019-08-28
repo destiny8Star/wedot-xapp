@@ -1,0 +1,31 @@
+/* pages/index/gType/gType.wxss */
+@import '../../../template/pubo/pubo.wxss';
+@import '../../../template/pubt/pubo.wxss';
+pages{
+  background:#F8F8F8 
+}
+.ilistbox{
+  width: 100%;
+  padding:10rpx 20rpx;
+  background: #F6F6F6;
+  margin-top: 240rpx
+}
+.listbox{
+  width: 100%;
+  justify-content: space-between
+}
+.listLeft,.listRight{
+  width: 344rpx;
+}
+.lack{
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  color: #999999;
+  margin-top: 50%
+}
+.lack-img{
+  width: 100%;
+  height: 195rpx;
+  margin-bottom: 20rpx
+}
