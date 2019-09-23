@@ -1,45 +1,44 @@
-// pages/index/gType/gType.js
-import Tips from '../../../class/utils/Tips.js'
-const app=getApp()
+// pages/mine/zorder/zorder.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goods:[], //获取的商品列表
+    islack: false, //是否显示缺省页:   显示：ture
+    page: 1,//页码
+    //数据
+    infos: [
+      {
+        recipient:'样哦老师',
+        tel:"11221233123",
+        address:"啊是的范围偶的加快速度缴费阿拉山口的缴费未放款快",
+        goodsName:"小苹果",
+        price:'33.2',
+        createTime:"20191212",
+        helpNum:"1",
+        status:"1",
+        orderStatus:"0"
+      },
+      {
+        recipient: '样哦老师',
+        tel: "11221233123",
+        address: "啊是的范围偶的加快速度缴费阿拉山口的缴费未放款快",
+        goodsName: "小苹果",
+        price: '33.2',
+        createTime: "20191212",
+        helpNum: "1",
+        status: "2",
+        orderStatus: "1"
+      }
+    ],
   },
-  //去商品详情页
-  toDetail(e) {
-    let gid = e.currentTarget.dataset.gid
-    wx.navigateTo({
-      url: '/pages/index/detail/detail?gid=' + gid,
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     let cid=options.cid
-     let cname=options.cname
-     console.log("cid",cid)
-     Tips.loading()
-     app.auth.getTGood(cid,1)
-     .then(res=>{
-       Tips.loaded()
-       this.setData({
-         goods:res.data.data
-       })
-       console.log("获取的商品",res)
-     })
-     .catch(rej=>{
-       Tips.loaded()
-       Tips.alert("网络异常")
-       console.log("失败",rej)
-     })
-    wx.setNavigationBarTitle({
-      title: cname
-    })
+
   },
 
   /**

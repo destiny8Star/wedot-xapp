@@ -7,8 +7,6 @@ Page({
     homeInfo:'',//首页信息
     imgUrls: [
       'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-      'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
-      'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
     ],
     goods:[
       {
@@ -72,9 +70,10 @@ Page({
     let targetWay=e.currentTarget.dataset.tarway
     let targetId=e.currentTarget.dataset.tarid
     let link = e.currentTarget.dataset.link
+    let cname=e.currentTarget.dataset.cname
     switch (targetWay){
       case 1: wx.navigateTo({
-        url: '/pages/index/gType/gType?sid='+targetId,
+        url: '/pages/index/gType/gType?cid='+targetId+'&&cname='+cname,
       })
       break;
       case 2: wx.navigateTo({

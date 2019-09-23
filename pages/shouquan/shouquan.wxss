@@ -1,6 +1,6 @@
 /* pages/shouquan/shouquan.wxss */
 page{
-  background: #cfcfcf
+  background:rgba(0,0,0,0.3)
 }
 .login{
   width: 600rpx;
@@ -33,6 +33,7 @@ h5{
   color: #333;
   font-weight: bold;
   margin:40rpx 0 30rpx; 
+  text-align: center
 }
 .content{
   width: 100%;

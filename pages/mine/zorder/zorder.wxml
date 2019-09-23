@@ -1,0 +1,41 @@
+<!--pages/mine/zorder/zorder.wxml-->
+ <view class="order">
+        <!-- //title -->
+        <view class="{{islack?'tit':'tits'}}">意向商品会在助力成功后72小时内发货如有质量问题请联系客服</view>
+        <!-- 无内容 -->
+        <view class="lack" wx:if="{{islack}}" >
+            <image src="../../../img/free/WDD.png" alt=""></image> 
+            您还没有商品订单快去升级，每月都可获得0元商品
+        </view>
+        <!-- 有内容  -->
+        <view class="contbox" wx:else>
+         
+            <view class="item" wx:for="{{infos}}" wx:key="ind">
+                <view class="item-top"><span class="top-name">{{item.recipient}}</span><span class="top-phone">{{item.tel}}</span></view>
+                <view class="item-address">{{item.address}}</view>
+                <view class="item-good">
+                    <image src="{{item.goodsUrl}}"  alt=""></image>
+                    <view class="good-right">
+                         <view class="good-right-tit">{{item.goodsName}}</view>
+                         <view class="good-right-zl">4个新好友助力即可免费领</view>
+                         <view class="good-right-price">原价:￥<span class="price-num">{{item.price}}</span></view>
+                    </view>
+                </view>
+                <view class="item-time">
+                    <view class="time-tit">发起时间</view>
+                    <view class="time-num">{{item.createTime | fileTime}}</view>
+                </view>
+                <view class="item-time">
+                    <view class="time-tit">获得新粉丝助力</view>
+                    <view class="zl-num">{{item.helpNum}}人</view>
+                </view>
+                 <view class="item-time">
+                    <view class="time-tit">订单状态</view>
+                    <view class="status-success" wx:if="{{item.status==0}}">进行中</view>
+                    <view class="status-fail" wx:elif="{{item.status==1}}">助力失败</view>
+                    <view class="status-fail" wx:elif="{{item.status==2&&item.orderStatus==0}}">助力成功</view>
+                    <view class="status-fail" wx:elif="{{item.orderStatus==1}}">已经发货</view>
+                </view>
+            </view>
+        </view>
+    </view>

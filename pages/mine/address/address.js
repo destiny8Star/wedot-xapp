@@ -13,27 +13,52 @@ Page({
   setDef(e){
     let ind = e.currentTarget.dataset.index
     let datas=this.data.datas;
-    datas.forEach(function(item){
-      item.isDefault=1
+    let id=e.currentTarget.dataset.id
+    Tips.loading()
+    app.auth.updDefAdd(id)
+    .then(res=>{
+      Tips.loaded()
+      console.log('修改地址',res)
+      datas.forEach(function (item) {
+        item.isDefault = 1
+      })
+      datas[ind].isDefault = 0
+      this.setData({
+        datas: datas
+      })
     })
-    datas[ind].isDefault=0
-    this.setData({
-      datas:datas
+    .catch(rej=>{
+      Tips.loaded()
+      Tips.alert("网络异常")
+      console.log("失败",rej)
     })
+  
    console.log("默认",ind)
   },
   //删除
   delAdd(e){
     let ind = e.currentTarget.dataset.index
     let datas = this.data.datas;
+    let id = e.currentTarget.dataset.id
     Tips.modal("是否删除此收货地址").then(res=>{
       console.log("aaa",res)
       if(res.confirm){
-        datas.splice(ind,1)
-        // this.onShow()
-        this.setData({
-          datas:datas
+         Tips.loading()
+        app.auth.delAdd(id)
+        .then(res=>{
+          Tips.loaded()
+          console.log("删除结果",res)
+          datas.splice(ind, 1)
+          this.setData({
+            datas: datas
+          })
         })
+        .catch(rej=>{
+          Tips.loaded()
+          Tips.alert("网络异常")
+          console.log("失败",rej)
+        })
+       
       }
     })
   },

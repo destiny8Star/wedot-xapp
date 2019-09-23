@@ -29,15 +29,50 @@ Page({
       url: '/pages/cart/cart'
     })
   },
-  //加入购买
+  //加入或购买
   add(e){
-    let addbuy=e.currentTarget.dataset.id 
-    /**判断有没有sku */
+    //判断有无手机号
+    let isP = wx.getStorageSync("user").isPhone
+    if (isP) {
+      wx.navigateTo({
+        url: '/pages/bindPhone/bindPhone',
+      })
+      return
+    }
 
-    this.setData({
-      showSKU:true,
-      addbuy: addbuy
-    })
+    let ginfo = this.data.gInfo
+    let addbuy=e.currentTarget.dataset.id 
+    let gnum = this.data.gnum
+    /**判断有没有sku */
+    if (ginfo.isSku){
+      if (addbuy == 1) {
+        Tips.loading()
+        app.auth.addCar(ginfo, gnum)
+          .then(res => {
+            Tips.loaded()
+            if (res.code == 200) Tips.toast('加入成功')
+            console.log("加入购物车", res)
+          })
+          .catch(rej => {
+            Tips.loaded()
+            console.log("加入购物车", rej)
+
+            Tips.alert('加入失败')
+          })
+      } else if (addbuy == 2) {
+        console.log("立即购买", ginfo)
+        wx.navigateTo({
+          url: '/pages/cart/commitOr/commitOr?gid=' + ginfo.skuId + '&&num=' + gnum,
+        })
+
+      }
+    }else{
+      this.setData({
+        showSKU: true,
+        addbuy: addbuy
+      })
+    }
+   
   },
   //隐藏
   hideSKU() {
@@ -73,6 +108,7 @@ Page({
     let addbuy = this.data.addbuy
     let gnum=this.data.gnum
     let selDone=this.data.selDone
+    let ginfo = this.data.gInfo   //商品详情
     /**判断数量是否超出 */
      if(!isAll) return   //没有选全就返回
     if (gnum > selDone.stock){
@@ -94,7 +130,11 @@ Page({
          Tips.alert('加入失败')
          })
      } else if (addbuy==2){
-       console.log("立即购买")
+       console.log("立即购买",ginfo)
+       wx.navigateTo({
+         url: '/pages/cart/commitOr/commitOr?gid=' + selDone.skuId+'&&num='+gnum,
+       })
+    
      }
   },
  
@@ -450,59 +490,10 @@ Page({
     //             "itemId":197,
     //             "itemName": "男款"
     //           },
-    //           {
-    //             "isSelect": 1, //0灰色，1正常
-    //             "itemId": 198,
-    //             "itemName": "女款"
-    //           },
-    //           {
-    //             "isSelect": 1, //0灰色，1正常
-    //             "itemId": 199,
-    //             "itemName": "中性款"
-    //           }
     //         ],
     //         "name": "款式"
     //       },
-    //       {
-    //         "itemList": [
-    //           {
-    //             "isSelect": 1, //0灰色，1正常
-    //             "itemId":201,
-    //             "itemName": "s"
-    //           },
-    //           {
-    //             "isSelect": 0, //0灰色，1正常
-    //             "itemId": 202,
-    //             "itemName": "m"
-    //           },
-    //           {
-    //             "isSelect": 1, //0灰色，1正常
-    //             "itemId": 203,
-    //             "itemName": "l"
-    //           }
-    //         ],
-    //         "name": "尺寸"
-    //       },
-    //       {
-    //         "itemList": [
-    //           {
-    //             "isSelect": 1, //0灰色，1正常
-    //             "itemId": 301,
-    //             "itemName": "哈哈哈"
-    //           },
-    //           {
-    //             "isSelect":1, //0灰色，1正常
-    //             "itemId": 302,
-    //             "itemName": "呵呵呵呵"
-    //           },
-    //           {
-    //             "isSelect": 1, //0灰色，1正常
-    //             "itemId": 303,
-    //             "itemName": "嘿嘿"
-    //           }
-    //         ],
-    //         "name": "其他"
-    //       },
+   
     //     ],
     //     "skuListResps": [
     //       {
@@ -515,46 +506,6 @@ Page({
     //         "skuId": 6933,
     //         "stock": 10
     //       },
-    //       {
-    //         "pic": "../../../img/3.jpg",
-    //         "price": "167",
-    //         "rebatePrice": "3",
-    //         "sku1Id": 198,
-    //         "sku2Id": 203,
-    //         "sku3Id": 301,
-    //         "skuId": 6934,
-    //         "stock": 10
-    //       },
-    //       {
-    //         "pic": "../../../img/3.jpg",
-    //         "price": "179",
-    //         "rebatePrice": "3",
-    //         "sku1Id": 199,
-    //         "sku2Id": 201,
-    //         "sku3Id": 301,
-    //         "skuId": 6935,
-    //         "stock": 10
-    //       },
-    //       {
-    //         "pic": "../../../img/3.jpg",
-    //         "price": "180",
-    //         "rebatePrice": "3",
-    //         "sku1Id": 199,
-    //         "sku2Id": 201,
-    //         "sku3Id": 303,
-    //         "skuId": 6935,
-    //         "stock": 10
-    //       },
-    //       {
-    //         "pic": "../../../img/3.jpg",
-    //         "price": "179",
-    //         "rebatePrice": "3",
-    //         "sku1Id": 198,
-    //         "sku2Id": 201,
-    //         "sku3Id": 303,
-    //         "skuId": 6935,
-    //         "stock": 10
-    //       }
     //     ]
     //   },
     //   "message": "ok"

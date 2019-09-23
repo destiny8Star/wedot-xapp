@@ -49,22 +49,22 @@ Page({
           Tips.alert('网络异常')
         })
     }else{
-      // Tips.loading()
-      // app.auth.updAdd(id, name, mobile, detailArea, discount2)
-      //   .then(res => {
-      //     Tips.loaded()
-      //     Tips.toast("添加成功", function () {
-      //       wx.navigateBack({
-      //         delta: 1
-      //       })
-      //     })
-      //     console.log("修改", res)
-      //   })
-      //   .catch(rej => {
-      //     console.log("失败", rej)
-      //     Tips.loaded()
-      //     Tips.alert('网络异常')
-      //   })
+      Tips.loading()
+      app.auth.incAdd( name, mobile, detailArea, discount2)
+        .then(res => {
+          Tips.loaded()
+          Tips.toast("添加成功", function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          })
+          console.log("添加", res)
+        })
+        .catch(rej => {
+          console.log("失败", rej)
+          Tips.loaded()
+          Tips.alert('网络异常')
+        })
     }
   
   },

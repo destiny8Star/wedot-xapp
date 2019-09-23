@@ -75,6 +75,14 @@ export default class AuthApi extends BaseApi {
 getHome(){
   return this.post('/api/smallPro/Login/home')
 }
+//获取分类下的商品
+getTGood(cid,cursor){
+  return this.post('/api/smallPro/Login/page/cid',{
+    cid:cid,
+    cursor:cursor,
+    size:10
+  })
+}
 //获取商品列表
 getGoods(){
   return this.post('/api/smallPro/Login/home/goods',{
@@ -100,6 +108,14 @@ addCar(info,gnum){
     goodsId: info.skuId,
     goodsNo: gnum,
 
+  })
+}
+//立即购买
+  buyNow(info, gnum, addressId){
+  return this.post('/api/smallPro/Login/buyNow',{
+    goodsId: info,
+    num:gnum,
+    addressId: addressId
   })
 }
 //购物车列表
@@ -133,7 +149,14 @@ delCar(sid,tid){
     size:10
   })
 }
-//提交订单
+//立即购买预览
+nowSubOr(gid,num){
+  return this.post('/api/smallPro/Login/buySubmitOrder',{
+    goodsId:gid,
+    num:num
+  })
+}
+//提交订单预览
   subOr(traId){
    return this.post('/api/smallPro/Login/submitOrder',{
      tradeCartItemIds:traId
@@ -155,6 +178,18 @@ delCar(sid,tid){
 getAllAdd(){
   return this.post('/api/smallPro/Login/addresses/account')
 }
+//增加收货地址
+  incAdd(name, mobile, detailArea, discount2){
+    return this.post('/api/smallPro/Login/address', {
+      realName: name,
+      mobile: mobile,
+      detailArea: detailArea,
+      province: discount2[0],
+      city: discount2[1],
+      area: discount2[2],
+      isDefault:1
+    })
+}
 //修改地址
   updAdd(id, name, mobile, detailArea,discount2){
     return this.post('/api/smallPro/Login/address/update',{
@@ -166,6 +201,19 @@ getAllAdd(){
       city: discount2[1],
       area: discount2[2]
     })
+}
+
+//修改默认地址
+updDefAdd(id){
+  return this.post('/api/smallPro/Login/addresses/default/update',{
+    commodityAddressId:id
+  })
+}
+//删除收货地址
+delAdd(id){
+  return this.post('/api/smallPro/Login/address/delete',{
+    commodityAddressId:id
+  })
 }
 
 }

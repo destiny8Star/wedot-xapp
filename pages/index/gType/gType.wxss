@@ -8,7 +8,7 @@ pages{
   width: 100%;
   padding:10rpx 20rpx;
   background: #F6F6F6;
-  margin-top: 240rpx
+  margin-top:30rpx
 }
 .listbox{
   width: 100%;

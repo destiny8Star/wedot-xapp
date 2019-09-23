@@ -1,5 +1,5 @@
 <!--pages/mine/zero/zero.wxml-->
-<view class="BG"></view>
+<!-- <view class="BG"></view> -->
  <view class="free">
         <!-- //顶部 -->
         <view class="free-top">
@@ -11,47 +11,53 @@
         <view class="free-cont">
             <image src="../../../img/free/BJ.png" alt="" class="top-image"></image>
             <view class="free-con">
-                   <view class="free-item" wx-for="{{isButList}}" wx-key="item.id">
+                   <view class="free-item"  wx:for="{{isButList}}" wx:key="{{index}}" >
                        <image src="../../../img/free/KUANG.png" class="free-item-bg"></image>
-                       <image src="{{item.url}}" alt="" class="free-item-le"></image>
-                       <view class="free-item-right">
-                            <view class="free-line"></view>
-                            <view class="free-line-tit">{{item.goodsTitle}}</view>
-                            <view class="free-item-price">原价：￥<span>{{item.price}}</span></view>
-                            <view class="free-item-info">4个好友助力可免费领</view>
-                            <view class="free-btn free-btny" bindtap="isGet(item.id,item.goodsTitle)">正在领取中<image src="../../../img/free/LQZ.png" alt=""></image></view>
-                       </view>
+                          <image src="{{item.url}}" alt="" class="free-item-le"></image>
+                          <view class="free-item-right">
+                                <view class="free-line"></view>
+                                <view class="free-line-tit">{{item.goodsTitle}}</view>
+                                <view class="free-item-price">原价：￥<span>{{item.price}}</span></view>
+                                <view class="free-item-info">4个好友助力可免费领</view>
+                                <view class="free-btn free-btny" data-id="{{item.id}}" data-gname="{{item.goodsTitle}}" bindtap="isGet">
+                                    正在领取中<image src="../../../img/free/LQZ.png" alt=""></image>
+                                </view>
+                          </view>
                    </view>
-                   <view class="free-item" wx-for="{{list}}" wx-key="item.id">
-                       <image :src="item.url" alt="" class="free-item-le"></image>
-                       <view class="free-item-right">
-                            <view class="free-line"></view>
-                            <view class="free-line-tit">{{item.goodsTitle}}</view>
-                            <view class="free-item-price">原价：￥<span>{{item.price}}</span></view>
-                            <view class="free-item-info">4个好友助力可免费领</view>
-                             <view class="free-btn free-btnb" bindtap="wantGet(item.id,item.goodsTitle)">我要免费领<image src="../../../img/free/JT.png" alt=""></image></view>
-                       </view>
+                    
+                   <view class="free-item" wx:for="{{list}}" wx:key="{{index}}">
+                       <image src="../../../img/free/KUANG.png" class="free-item-bg"></image>
+                          <image src="{{item.url}}" alt="" class="free-item-le"></image>
+                          <view class="free-item-right">
+                                <view class="free-line"></view>
+                                <view class="free-line-tit">{{item.goodsTitle}}</view>
+                                <view class="free-item-price">原价：￥<span>{{item.price}}</span></view>
+                                <view class="free-item-info">4个好友助力可免费领</view>
+                                <view class="free-btn free-btnb" data-id="{{item.id}}" bindtap="wantGet">我要免费领<image src="../../../img/free/JT.png" alt=""></image></view>
+                          </view>
                    </view>
             </view>
         </view>
         <!-- //弹框 -->
         <view class="mask"  hidden="{{maskShow==0}}">
             <!-- //填写地址 -->
-            <view class="mask maska" bindtap="maskShow=0,addMH=0" hidden="addMH==1">
+            <view class="mask maska" bindtap="hideMA" hidden="{{addMH==0}}">
              </view>
-              <view class="address" hidden="{{addstatus==0}}">
+              <view class="address" hidden="{{addstatus!=0}}">
+                 <form bindsubmit="sureAdd">
                     <view class="add-tit">填写收货地址-免费领</view>
-                    <view class="inp-name">收货人：<input type="text" class="aname" v-model="aname" placeholder="姓名"></input></view>
-                    <view class="inp-name">手机号：<input type="number" class="aname" v-model="aphone" placeholder="号码"></input></view>
-                    <view class="inp-are">详细收货地址：<textarea class="area" placeholder="地址" rows="3" v-model="area"></textarea></view>
-                    <view class="add-btn"  bindtap="sureAdd">确认收货地址</view>
+                    <view class="inp-name">收货人：<input type="text" class="aname" name="aname" placeholder="姓名"></input></view>
+                    <view class="inp-name">手机号：<input type="number" class="aname" name="aphone" placeholder="号码"></input></view>
+                    <view class="inp-are">详细收货地址：<textarea class="area"  fixed placeholder="地址" name="area"></textarea></view>
+                    <button class="add-btn" form-type="submit">确认收货地址</button>
+                  </form>  
                 </view>
              <!-- //确认地址 -->
-             <view class="sureadd" hidden="{{addstatus==0}}">
+             <view class="sureadd" hidden="{{addstatus!=1}}">
                   <view class="add-tit">确认收货地址</view>
                   <view class="add-cont">
-                      <view class="add-np"><span>{{this.aname}}</span> &nbsp;<span>{{this.aphone}}</span></view>
-                      <view class="add-adr">{{this.area}}</view>
+                      <view class="add-np"><span>{{aname}}</span> \t\t <span>{{aphone}}</span></view>
+                      <view class="add-adr">{{area}}</view>
                   </view>
                   <view class="add-btnbox">
                       <view class="q-btn" bindtap="toCancel">返回</view>
@@ -61,13 +67,18 @@
              <!-- 去分享 -->
              <view class="toshare" hidden="{{showShare==0}}">
                 <view class="sharebg">
+                    <image src="../../../img/free/sBJ.png" class="shareBgimg"></image>
                     <view class="sharebg-tit">只要获得4个新粉丝帮忙助力即可免费领!</view>
                     <view class="share-btn">
-                        <view class="sf-btn" bindtap="shareHandler(0)"><image src="../../../img/free/WX.png" alt=""></image>分享至好友</view>
-                        <view class="sf-btn" bindtap="shareHandler(1)"><image src="../../../img/free/PYQ.png" alt=""></image>分享朋友圈</view>
+                        <button open-type="share" class="btn-share"> <view class="sf-btn" ><image src="../../../img/free/WX.png" alt=""></image>分享至好友</view></button>
+                        <view class="sf-btn" bindtap="shareHandler"><image src="../../../img/free/PYQ.png" alt=""></image>分享朋友圈</view>
                     </view>
                 </view>
-                <view class="q-share" bindtap="maskShow=0;addstatus=0;showShare=0"><image src="../../../img/free/GB.png" alt=""></image></view>
+                <view class="q-share" bindtap="hideToshare"><image src="../../../img/free/GB.png" alt=""></image></view>
              </view>
         </view>
     </view>
+    <poster id="poster" hide-loading="{{true}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+    <button>生成海报</button>
+</poster>
+<button open-type="openSetting">授权</button>

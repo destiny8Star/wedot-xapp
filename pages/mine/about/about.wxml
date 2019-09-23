@@ -1,0 +1,9 @@
+<!--pages/mine/about/about.wxml-->
+<view class="logo">
+    <image class="logoImg" src="../../../img/usLogo.png"></image>
+    微点零售
+</view>
+<view class="bot">
+  Copyright©2019-2023 <text>\n</text>
+杭州有盛网络科技有限公司
+</view>

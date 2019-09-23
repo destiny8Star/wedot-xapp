@@ -7,34 +7,67 @@ Page({
    * 页面的初始数据
    */
   data: {
-    defAdd:{},//默认地址
+    defAdd:'',//默认地址
     infos:{},// 页面信息
     traId:'',  //购物车id
     storeId: '', //店铺id
+    num:"",//从立即购买传过来的
+    gid:"", //其实就是skuid
   },
-
+//去选择地址
+  toAdd(){
+    wx.navigateTo({
+      url: '/pages/mine/address/address',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let traId = options.traId
-    let storeId=options.storeId
+    let traId = options.traId//从购物车过来的
+    let storeId = options.storeId//从购物车过来的
+
+    let gid=options.gid;//立即购买需要的值 其实是skuid!!!!!!!!!!!!!!!!!!!!!
+    let num = options.num;//立即购买需要的值
+
+    console.log("cz", traId, storeId, gid, num)
     Tips.loading()
-    app.auth.subOr(traId)
-      .then(res => {
-        Tips.loaded()
-        this.setData({
-          infos:res.data,
-          traId: traId,
-          storeId: storeId
+    if(traId){
+      //购物车过来调用
+      app.auth.subOr(traId)
+        .then(res => {
+          Tips.loaded()
+          this.setData({
+            infos: res.data,
+            traId: traId,
+            storeId: storeId
+          })
+          console.log("提交结果", res)
         })
-        console.log("提交结果", res)
-      })
-      .catch(rej => {
-        Tips.loaded()
-        Tips.alert("网络异常")
-        console.log("提交失败", rej)
-      })
+        .catch(rej => {
+          Tips.loaded()
+          Tips.alert("网络异常")
+          console.log("提交失败", rej)
+        })
+    }else{
+      //立即购买过来调用
+      app.auth.nowSubOr(gid,num)
+        .then(res => {
+          Tips.loaded()
+          this.setData({
+            infos: res.data,
+            num: num,
+            gid:gid
+          })
+          console.log("提交结果", res)
+        })
+        .catch(rej => {
+          Tips.loaded()
+          Tips.alert("网络异常")
+          console.log("提交失败", rej)
+        })
+    }
+   
   },
 
   /**
@@ -45,16 +78,65 @@ Page({
   },
 //去付款
   toPay(){
-    let traId = this.data.traId
-    let storeId=this.data.storeId
-    let addressId = this.data.defAdd.commodityAddressId
+    let traId = this.data.traId//从购物车过来的
+    let storeId = this.data.storeId//从购物车过来的
+
+    let gid = this.data.gid;//立即购买需要的值 其实是skuid!!!!!!!!!!!!!!!!!!!!!
+    let num = this.data.num;//立即购买需要的值 
+    let addressId = this.data.defAdd.commodityAddressId||1
+    if (!addressId){
+      Tips.alert("请选择收货地址")
+      return 
+    }
     console.log("id",traId,storeId)
-    app.auth.createOrd(traId, storeId, addressId)
-    .then(res=>{
-      console.log("去付款结果",res)
-    })
-    .catch(rej=>{
-      console.log("付款四百",rej)
+    Tips.loading()
+    if(traId){
+      app.auth.createOrd(traId, storeId, addressId)
+        .then(res => {
+          Tips.loaded()
+          console.log("去付款结果", res)
+        })
+        .catch(rej => {
+          Tips.loaded()
+
+          console.log("付款四百", rej)
+        })
+    }else{
+      app.auth.buyNow(gid, num, addressId)
+       .then(res=>{
+         Tips.loaded()
+
+         console.log("立即购买结果")
+       })
+       .catch(rej=>{
+         Tips.loaded()
+
+         console.log("立即购买失败",rej)
+       })
+    } 
+  
+  },
+  dopay(res){
+    let that = this;
+    Tips.loading()
+    wx.requestPayment({
+      'timeStamp': a.timeStamp,
+      'nonceStr': a.nonceStr,
+      'package': a.package,
+      'signType': 'MD5',
+      'paySign': a.paySign,
+      'success': function (res) {
+        Tips.loaded()
+        console.log('支付成功', res)
+        Tips.toast('支付成功', function () {
+         
+        })
+      },
+      'fail': function (res) {
+        Tips.loaded()
+        Tips.alert('支付失败')
+       
+      },
     })
   },
   /**
@@ -70,7 +152,6 @@ Page({
       })
     })
     .catch(rej=>{
-      Tips.alert("获取地址失败")
       console.log("获取地址失败",rej)
     })
   },

@@ -1,6 +1,6 @@
 <!--pages/index/gType/gType.wxml-->
-<import src="../../template/pubo/pubo.wxml"/>
-<import src="../../template/pubt/pubo.wxml"/>
+<import src="../../../template/pubo/pubo.wxml"/>
+<import src="../../../template/pubt/pubo.wxml"/>
 <!-- 商品列表 -->
 <view class="ilistbox" wx:if='{{goods.length!=0}}'>
     <view class="listbox flex">

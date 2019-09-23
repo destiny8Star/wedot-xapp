@@ -1,4 +1,5 @@
 // pages/mine/mine.js
+import Tips from '../../class/utils/Tips.js'
 Page({
 
   /**
@@ -80,13 +81,33 @@ Page({
      if(id==2) wx.navigateTo({
        url: 'address/address',
      })
-     if(id==4) console.log("id====4")
+    if (id == 4) wx.navigateTo({
+      url: 'about/about',
+    })
   },
   //去零元商品
   toPub(){
     wx.navigateTo({
       url: 'zero/zero',
     })
+  },
+  //复制
+  clipBoard(){
+    let data = this.data.userInfo
+    wx.setClipboardData({
+      data: data.phone,
+      success(res) {
+        // wx.getClipboardData({
+        //   success(res) {
+        //     console.log(res.data) // data
+        //   }
+        // })
+      }
+    })
+  },
+  //去app看
+  toApp(){
+     Tips.toast("请下载app查看",'','none')
   },
   /**
    * 生命周期函数--监听页面加载
@@ -108,6 +129,21 @@ Page({
   onShow: function () {
     let userInfo = wx.getStorageSync('user')
     console.log("获取信息", userInfo)
+    if(!userInfo.openId){
+      wx.navigateTo({
+        url: '/pages/shouquan/shouquan',
+      })
+      return 
+    }
+    if(userInfo.isPhone==1){
+      wx.navigateTo({
+        url: '/pages/bindPhone/bindPhone',
+      })
+      return 
+    }
+
+
+
     this.setData({
       userInfo: userInfo
     })

@@ -1,0 +1,52 @@
+<!--pages/mine/zl/zl.wxml-->
+ <!-- 顶部 -->
+    <view class="top">
+        <image src="../../../img/free/zlBJ.png" class="bg"></image>
+        <view class="top-box">
+            <view class="top-goods">
+                <image src="{{infos.url}}" alt="" class="good-img"></image>
+                <view class="goods-cont">
+                    <view class="goods-name">{{infos.goodsTitle}}</view>
+                    <view class="goods-info">
+                         <view class="goods-per">已有<span class="per-num">{{infos.num}}</span>位成功领取</view>
+                        <view class="goods-pri">原价:<span class="pri-num">￥{{infos.price}}</span></view>
+                    </view>
+                </view>
+            </view>
+            <view class="top-zlper">
+              <block wx:if='{{!zlDone}}'>
+                <image  src="../../../img/free/ZL.png" alt="" wx:if='{{infos.process==0}}'></image>
+                <image  src="../../../img/free/ZL-1.png" alt="" wx:if='{{infos.process==1}}'></image>
+                <image  src="../../../img/free/ZL-2.png" alt="" wx:if='{{infos.process==2}}'></image>
+                <image  src="../../../img/free/ZL-3.png" alt="" wx:if='{{infos.process==3}}'></image>
+                <image  src="../../../img/free/ZL-4.png" alt="" wx:if='{{infos.process==4}}'></image>
+              </block> 
+              <block wx:else>
+                 <view class="zl-wc">{{zlText}}</view>
+              </block>
+            </view>
+            <view class="top-btn">
+                <button class="btn-zl" bindtap="showMask" hidden="{{infos.process==4||zlDone}}">我要给他助力</button>
+                <button class="weui-btn btn-lq"  hidden="{{!zlDone}}" bindtap="toMine">我也要0元领取</button>
+                <button class="weui-btn btn-wc" hidden="{{infos.process!=4}}">已完成助力</button>
+
+            </view>
+        </view>
+    </view>
+    <!-- //商品详情 -->
+    <view class="detail">
+        <view class="detailbg">
+            <image src="{{infos.urlDetailOne}}"  mode='widthFix'></image>
+            <image src="{{infos.urlDetailTwo}}" mode='widthFix'></image>
+        </view>
+    </view>
+    <!-- //mask -->
+    <view class="mask" hidden="{{sure}}">
+        <view class="mask-box">
+            <view class="mask-tit">输入手机号即可助力成功</view>
+            <view class="m-name"><input type="number" class="in-name" placeholder="请输入手机号"bindinput="blurPhonel"></input></view>
+            <view class="m-name flex_be"><input type="number" maxlength='6' class="in-name in-code" bindinput="blurCode" placeholder="请输入验证码"></input><view class="getcode flex {{!getChange?'btn_yzmF':''}}" bindtap="getYZM">{{getText}}</view></view>
+            <button class="weui-btn btn-to" bindtap="bindPhone">帮忙助力</button>
+            <view class="nohelp" bindtap="hideMask">不想给他助力</view>
+        </view>
+    </view>

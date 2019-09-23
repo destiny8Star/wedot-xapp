@@ -51,6 +51,25 @@ function wxGetUserInfo() {
   return wxPromisify(wx.getUserInfo)();
 }
 /**
+ * 改版后调用的方式!!!!!
+ */
+function wxOpenSettings(fn) {
+  let obj={}
+  return new Promise((resolve, reject) => {
+    obj.success = function (res) {
+      //成功
+      resolve(res)
+    }
+    obj.fail = function (res) {
+      //失败
+      reject(res)
+    }
+    fn(obj)
+  })
+
+}
+
+/**
  * 获取系统信息
  */
 function wxGetSystemInfo() {
@@ -61,8 +80,9 @@ function wxGetSystemInfo() {
  * 调起客户端小程序设置界面
  */
 function wxOpenSetting() {
-  return wxPromisify(wx.openSetting)();
+  return wxPromisify(wx.openSetting);
 }
+
 
 /**
  * 检查客户端会话状态
@@ -104,6 +124,6 @@ module.exports = {
   wxOpenSetting: wxOpenSetting,
   checkSession: checkSession,
   wxPay: wxPay,
-  checkAuthorize: checkAuthorize
-
+  checkAuthorize: checkAuthorize,
+   wxOpenSettings: wxOpenSettings,
 }

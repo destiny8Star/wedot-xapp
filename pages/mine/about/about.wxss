@@ -1,0 +1,25 @@
+/* pages/mine/about/about.wxss */
+page{
+  background: #F8F8F8
+}
+.logo{
+  margin:50% auto 0;
+  width: 100%;
+  text-align: center;
+  font-size: 64rpx;
+  color: #FC2C54;
+}
+.logoImg{
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 auto
+}
+.bot{
+  width: 100%;
+  position: fixed;
+  bottom: 120rpx;
+  font-size: 24rpx;
+  color: #909090;
+  text-align: center
+}

@@ -17,9 +17,11 @@ page{
   flex: 1;
 }
 .coTop-addR{
-  width: 36rpx;
-  height: 36rpx;
   margin-left: 42rpx
+}
+.coTop-addR image{
+ width: 36rpx;
+  height: 36rpx;
 }
 .coTop-addL-top{
   align-items: center
@@ -184,4 +186,14 @@ page{
 }
 .orList-botconPri{
   font-size: 32rpx
+}
+.lackAdd{
+  font-size: 32rpx;
+  color: #3E3E4D;
+  align-items: center;
+  font-weight: bold
+}
+.lackAdd image{
+  width: 36rpx;
+  height: 36rpx;
 }

@@ -13,9 +13,9 @@
              </view>
          </view>
          <view class="mtop-tR-bot flex">
-           <image src="../../img/m-box.png" class="mtop-tRbg"></image>
-            <view class="mtop-tR-botWoc">邀请码：158445254784</view>
-            <view class="mtop-tR-botFz">复制</view>
+           <image src="../../img/m-box.png" class="mtop-tRbg" bindtap="clipBoard"></image>
+            <view class="mtop-tR-botWoc">邀请码：{{userInfo.phone}}</view>
+            <view class="mtop-tR-botFz" >复制</view>
          </view>
       </view>
   </view>
@@ -28,7 +28,7 @@
   </view>
 </view>
 <!-- 中间图片 -->
-<view class="mplus"><image src="../../img/m-toplus.png"></image></view>
+<view class="mplus" bindtap="toApp"><image src="../../img/m-toplus.png"></image></view>
 <!-- //我的订单 -->
 <view class="morder">
     <view class="morderBox">
@@ -38,7 +38,7 @@
         </view>
         <view class="morder-list flex_ar">
           <block wx:for='{{oList}}' wx:key='{{item.id}}'>
-            <view class="morder-item" bindtap="toOrder" data-id="{{item.id}}">
+            <view class="morder-item" bindtap="toApp" data-id="{{item.id}}">
               <image src="{{item.img}}"></image>
               {{item.name}}
             </view>

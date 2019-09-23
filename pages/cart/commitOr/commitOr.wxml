@@ -2,18 +2,20 @@
 <!-- 顶部的东西 -->
 <view class="coTop">
     <!-- 地址 -->
-   <view class="coTop-add flex">
-      <!-- <view class="coTop-addL">
+   <view class="coTop-add flex" wx:if='{{defAdd}}'bindtap="toAdd">
+      <view class="coTop-addL">
          <view class="coTop-addL-top flex">
             <image src='../../../img/co-add.png'></image>
             <view class="coTop-addL-topM">{{defAdd.realName}}</view>
             <view class="coTop-addL-topP">{{defAdd.mobile}}</view>
          </view>
          <view class="coTop-addL-bot">{{defAdd.province+defAdd.city+defAdd.area+defAdd.detailArea}}</view>
-      </view> -->
-      
-      <!-- //缺少的 -->
-
+      </view>
+      <view class="coTop-addR"><image src="../../../img/co-toR.png"></image></view>
+   </view>
+   <!-- //缺少的 -->
+   <view class="coTop-add flex_be" wx:else bindtap="toAdd">
+      <view class="lackAdd flex_be"><image src='../../../img/co-add.png'></image>请选择默认收货地址</view>
       <view class="coTop-addR"><image src="../../../img/co-toR.png"></image></view>
    </view>
 <!-- 商品 -->

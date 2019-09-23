@@ -8,7 +8,7 @@
       </view>
       <view class="ad-itemMin">{{item.province+item.city+item.area+item.detailArea}}</view>
       <view class="ad-itemBot flex_be">
-          <view class="ad-itemBot-l flex" data-index="{{index}}" bindtap="setDef">
+          <view class="ad-itemBot-l flex" data-index="{{index}}" bindtap="setDef" data-id="{{item.commodityAddressId}}">
                <icon type="success" size="18" color='#FC2C54' hidden="{{item.isDefault==1}}"></icon>
                <view class="ad-itemBot-licon" hidden="{{item.isDefault==0}}"></view>
                <view class="ad-itemBot-ldf {{item.isDefault==0?'ad-itemBot-lmr':''}}">设为默认</view>
@@ -18,7 +18,7 @@
                  <image src="../../../img/ad-bj.png" ></image>
                  编辑
               </view>
-               <view class="ad-itemBot-rbj ad-itemBot-rdel flex" bindtap="delAdd" data-index="{{index}}">
+               <view class="ad-itemBot-rbj ad-itemBot-rdel flex" bindtap="delAdd" data-index="{{index}}" data-id="{{item.commodityAddressId}}">
                  <image src="../../../img/ad-del.png"></image>
                  删除
               </view>

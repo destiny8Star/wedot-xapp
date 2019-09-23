@@ -1,45 +1,18 @@
-// pages/index/gType/gType.js
-import Tips from '../../../class/utils/Tips.js'
-const app=getApp()
+// pages/mine/about/about.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goods:[], //获取的商品列表
+
   },
-  //去商品详情页
-  toDetail(e) {
-    let gid = e.currentTarget.dataset.gid
-    wx.navigateTo({
-      url: '/pages/index/detail/detail?gid=' + gid,
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     let cid=options.cid
-     let cname=options.cname
-     console.log("cid",cid)
-     Tips.loading()
-     app.auth.getTGood(cid,1)
-     .then(res=>{
-       Tips.loaded()
-       this.setData({
-         goods:res.data.data
-       })
-       console.log("获取的商品",res)
-     })
-     .catch(rej=>{
-       Tips.loaded()
-       Tips.alert("网络异常")
-       console.log("失败",rej)
-     })
-    wx.setNavigationBarTitle({
-      title: cname
-    })
+
   },
 
   /**

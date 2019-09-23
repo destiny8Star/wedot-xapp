@@ -28,8 +28,8 @@
 <view class='iad' wx:if='{{homeInfo.banner1.detailPic}}'  bindtap="toAll" data-tarid="{{homeInfo.banner1.targetId}}" data-tarway="{{homeInfo.banner1.targetWay}}" data-link="{{homeInfo.banner1.linkUrl}}"><image src="{{homeInfo.banner1.detailPic}}"></image></view>
 <!-- tab -->
 <view class='itab flex_ar'>
-    <block wx:for='{{homeInfo.icon1}}' wx:key='item.id'>
-       <view class='itab-item' hidden='{{index>4}}'  bindtap="toAll" data-tarid="{{item.targetId}}" data-tarway="{{item.targetWay}}" data-link="{{item.linkUrl}}">
+    <block wx:for='{{homeInfo.icon1}}' wx:key='{{index}}'>
+       <view class='itab-item' hidden='{{index>4}}'  bindtap="toAll" data-tarid="{{item.targetId}}" data-tarway="{{item.targetWay}}" data-link="{{item.linkUrl}}" data-cname='{{item.mainTitle}}'>
           <image src='{{item.detailPic}}'></image>
           <view class='itab-p'>{{item.mainTitle}}</view>
        </view>
